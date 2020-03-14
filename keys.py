@@ -1,11 +1,9 @@
 import os
 import pygame
-
-PI = 1
-PC = 2
+from var import *
 
 class Key():
-    def __init__(self):
+    def __init__(self, env):
         self.btn_up = 5
         self.btn_down = 26
         self.btn_left = 19
@@ -13,12 +11,10 @@ class Key():
         self.btn_key1 = 21
         self.btn_key2 = 20
         self.btn_list = [self.btn_up, self.btn_down, self.btn_left, self.btn_right, self.btn_key1, self.btn_key2]
-
-        if "GAME_DEV" in os.environ and os.environ["GAME_DEV"] == 'PI':
-            self.dev = PI
+        self.env = env
+        if env == PI:
             self.initGPIO()
         else:
-            self.dev = PC
             self.initKeyboard()
     def initKeyboard(self):
         self.key_list = [pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, pygame.K_u, pygame.K_i]
@@ -45,18 +41,28 @@ class Key():
     def setOnKeyDownListener(self, listener):
         self.onKeyDownListener = listener
 
+    def setOnKeyContinueDownListener(self, listener):
+        self.onKeyContinueDownListener = listener
+
+    def _setOnKeyContinueDown(self, key):
+        if self.onKeyContinueDownListener:
+            self.onKeyContinueDownListener(self, key)
+
     def _setOnKeyDown(self, key):
-        self.onKeyDownListener(self, key)
+        if self.onKeyDownListener:
+            self.onKeyDownListener(self, key)
 
     def _setOnKeyUp(self, key):
-        self.onKeyUpListener(self, key)
+        if self.onKeyUpListener:
+            self.onKeyUpListener(self, key)
 
     def update(self):
-        if self.dev == PI:
+        if self.env == PI:
             for i in self.btn_list:
                 if (not GPIO.input(i)): # button pressed
                     if not self.btn_list_flag[i]:
                         self._setOnKeyDown(i)
+                    self._setOnKeyContinueDown(i)
                     self.btn_list_flag[i] = True
                 if self.btn_list_flag[i] and GPIO.input(i): # button released
                     self.btn_list_flag[i] = False
@@ -64,8 +70,10 @@ class Key():
         else:
             keys = pygame.key.get_pressed()
             for i in self.key_list:
-                if not self.key_list_flag[i] and keys[i]:
-                    self._setOnKeyDown(self.key_map[i])
+                if keys[i]:
+                    if not self.key_list_flag[i]:
+                        self._setOnKeyDown(self.key_map[i])
+                    self._setOnKeyContinueDown(self.key_map[i])
                     self.key_list_flag[i] = True
                 if self.key_list_flag[i] and not keys[i]:
                     self._setOnKeyUp(self.key_map[i])
