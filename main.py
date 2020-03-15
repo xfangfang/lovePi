@@ -11,14 +11,13 @@ from activity.cat import CatGame
 from utils import get_yaml_data
 
 
-DISPLAYSURF = pygame.display.set_mode((WIDTH, HEIGHT))
-fpsClock = pygame.time.Clock()
-
 class App():
     def __init__(self):
         pygame.init()
         # pygame.display.set_caption('LovePi')
         pygame.mouse.set_visible(False)
+        self.surface = pygame.display.set_mode((WIDTH, HEIGHT))
+        self.fpsClock = pygame.time.Clock()
         self.HEIGHT = HEIGHT
         self.WIDTH = WIDTH
         self.HEIGHT_SCALE = HEIGHT / 16
@@ -36,9 +35,9 @@ class App():
 
     def update(self):
         self.key.update()
-
         if self.activity:
             self.activity.update()
+        self.surface.blit(self.activity.surf, (self.activity.x,self.activity.y))
     def test(self):
         # draw on the surface object
         DISPLAYSURF.fill(WHITE)
@@ -70,25 +69,22 @@ class App():
         self.activity = activity
 
 def main():
-    global DISPLAYSURF
     # main app
     app = App()
     catgame = CatGame(app)
     app.setActivity(catgame)
-    # set Keyboard listener
-
 
     # run the game loop
     while True:
-        DISPLAYSURF.fill(WHITE)
+        app.surface.fill(WHITE)
         app.update()
-        DISPLAYSURF.blit(app.activity.surf, (app.activity.x,app.activity.y))
+
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
         pygame.display.update()
-        fpsClock.tick(60)
+        app.fpsClock.tick(60)
 
 if __name__ == '__main__':
     main()
