@@ -6,10 +6,10 @@ if ENV == PI:
 
 class Key():
     def __init__(self):
-        self.btn_up = 5
-        self.btn_down = 26
-        self.btn_left = 19
-        self.btn_right = 6
+        self.btn_up = 6
+        self.btn_down = 19
+        self.btn_left = 5
+        self.btn_right = 26
         self.btn_key1 = 21
         self.btn_key2 = 20
         self.btn_list = [self.btn_up, self.btn_down, self.btn_left, self.btn_right, self.btn_key1, self.btn_key2]
