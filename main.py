@@ -5,11 +5,10 @@ import pygame
 import random
 from pygame.locals import *
 
-from var import *
 from keys import Key
 from activity.cat import CatGame
 from utils import get_yaml_data
-
+from var import *
 
 class App():
     def __init__(self):
