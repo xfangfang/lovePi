@@ -10,32 +10,20 @@ from keys import Key
 from activity.cat import CatGame
 from utils import get_yaml_data
 
-ENV = PC
-HEIGHT = 128
-WIDTH = 128
 
-# HEIGHT = 240
-# WIDTH = 240
-if "GAME_DEV" in os.environ and os.environ["GAME_DEV"] == 'PI':
-    ENV = PI
-    os.environ["SDL_FBDEV"] = "/dev/fb1"
-    os.environ['SDL_VIDEODRIVER'] = 'fbcon'
-
-# set up the colors
-
-DISPLAYSURF = pygame.display.set_mode((WIDTH, HEIGHT), 0, 32)
+DISPLAYSURF = pygame.display.set_mode((WIDTH, HEIGHT))
 fpsClock = pygame.time.Clock()
 
 class App():
     def __init__(self):
         pygame.init()
-        pygame.display.set_caption('LovePi')
+        # pygame.display.set_caption('LovePi')
         pygame.mouse.set_visible(False)
         self.HEIGHT = HEIGHT
         self.WIDTH = WIDTH
         self.HEIGHT_SCALE = HEIGHT / 16
         self.WIDTH_SCALE = HEIGHT / 16
-        self.key = Key(ENV)
+        self.key = Key()
         self.key.setOnKeyUpListener(self.onKeyUp)
         self.key.setOnKeyDownListener(self.onKeyDown)
         self.key.setOnKeyContinueDownListener(self.onKeyContinueDown)
@@ -82,6 +70,7 @@ class App():
         self.activity = activity
 
 def main():
+    global DISPLAYSURF
     # main app
     app = App()
     catgame = CatGame(app)

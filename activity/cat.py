@@ -32,7 +32,7 @@ class CatGame(Activity):
         self.surf.blit(self.text1, (center[0], center[1] - rect.bottom))
         center = self.center(self.text2.get_rect())
         self.surf.blit(self.text2, (center[0],center[1]+10))
-        self.surf = pygame.transform.rotate(self.surf, -90)
+        self.surf = pygame.transform.rotate(self.surf, -180)
 
 
     def initBricks(self):
@@ -48,7 +48,7 @@ class CatGame(Activity):
             self.surf.fill(WHITE)
             self.surf.blit(self.user.surf, self.user.position)
             self.surf.blit(self.bot.surf, self.bot.position)
-            self.surf = pygame.transform.rotate(self.surf, -90)
+            self.surf = pygame.transform.rotate(self.surf, -180)
     def onKeyDown(self, key, e):
         if e == key.btn_key1:
             self.state = START

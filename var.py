@@ -1,7 +1,23 @@
 
+import os
 
 PI = 1
 PC = 2
+
+ENV = PC
+HEIGHT = 128
+WIDTH = 128
+
+HEIGHT = 240
+WIDTH = 240
+
+if "GAME_DEV" in os.environ and os.environ["GAME_DEV"] == 'PI':
+    ENV = PI
+    print('ENV: PI')
+    os.environ["SDL_FBDEV"] = "/dev/fb1"
+    os.environ['SDL_VIDEODRIVER'] = 'fbcon'
+else:
+    print('ENV: PC')
 
 CONF_START = 'conf/start.yaml'
 CONF_ACTIVITY = 'conf/activity.yaml'

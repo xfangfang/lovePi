@@ -1,9 +1,11 @@
 import os
 import pygame
 from var import *
+if ENV == PI:
+    import RPi.GPIO as GPIO
 
 class Key():
-    def __init__(self, env):
+    def __init__(self):
         self.btn_up = 5
         self.btn_down = 26
         self.btn_left = 19
@@ -11,8 +13,8 @@ class Key():
         self.btn_key1 = 21
         self.btn_key2 = 20
         self.btn_list = [self.btn_up, self.btn_down, self.btn_left, self.btn_right, self.btn_key1, self.btn_key2]
-        self.env = env
-        if env == PI:
+        self.env = ENV
+        if ENV == PI:
             self.initGPIO()
         else:
             self.initKeyboard()
@@ -26,7 +28,7 @@ class Key():
             self.key_list_flag[i] = False
 
     def initGPIO(self):
-        import RPi.GPIO as GPIO
+
         GPIO.setmode(GPIO.BCM)
         self.btn_list_flag = {}
 
