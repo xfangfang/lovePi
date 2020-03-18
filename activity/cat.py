@@ -49,11 +49,10 @@ class CatGame(Activity):
         self.surf.fill(WHITE)
         self.text1 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(2))+10).render('加油！', True, BLACK)
         self.text2 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render('帮助你的男人打败他', True, BLACK)
-        rect = self.text1.get_rect()
-        center = self.center(rect)
-        self.surf.blit(self.text1, (center[0], center[1] - rect.bottom))
-        center = self.center(self.text2.get_rect())
-        self.surf.blit(self.text2, (center[0],center[1]+10))
+        self.text3 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render('(按 A 开始, B 暂停)', True, BLACK)
+        self.surf.blit(self.text1, self.title(self.text1.get_rect()))
+        self.surf.blit(self.text2, self.content1(self.text2.get_rect()))
+        self.surf.blit(self.text3, self.content3(self.text3.get_rect()))
 
     def pause(self):
         self.surf.fill(WHITE)
@@ -77,14 +76,10 @@ class CatGame(Activity):
             self.ball_y_direction *= -1
         else:
             self.ball.Y += self.ball_y_v * self.ball_y_direction
-            if self.ball_y_direction == 1:
-                if self.ball.Y + self.ball.rect.height >= self.HEIGHT:
+            if self.ball_y_direction == 1 and self.ball.Y + self.ball.rect.height >= self.HEIGHT:
                     self.state = OVER
-            elif self.ball_y_direction == -1:
-                if self.ball.Y <= 0:
+            elif self.ball_y_direction == -1 and self.ball.Y <= 0:
                     self.state = WIN
-                    # self.ball.Y = 0
-                    # self.ball_y_direction = 1
         # ball x direction
         self.ball.X += self.ball_x_v * self.ball_x_direction
         if self.ball_x_direction == 1:
@@ -125,20 +120,19 @@ class CatGame(Activity):
         self.surf.fill(WHITE)
         self.text1 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(2))+10).render('游戏结束', True, BLACK)
         self.text2 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render('A 重新开始', True, BLACK)
-        rect = self.text1.get_rect()
-        center = self.center(rect)
-        self.surf.blit(self.text1, (center[0], center[1] - rect.bottom))
-        center = self.center(self.text2.get_rect())
-        self.surf.blit(self.text2, (center[0],center[1]+10))
+        self.text3 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render('B 认命了', True, BLACK)
+
+        self.surf.blit(self.text1, self.title(self.text1.get_rect()))
+        self.surf.blit(self.text2, self.content1(self.text2.get_rect()))
+        self.surf.blit(self.text3, self.content2(self.text3.get_rect()))
+
     def win(self):
         self.surf.fill(WHITE)
         self.text1 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(2))+10).render('你赢啦', True, BLACK)
         self.text2 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render('A 返回', True, BLACK)
-        rect = self.text1.get_rect()
-        center = self.center(rect)
-        self.surf.blit(self.text1, (center[0], center[1] - rect.bottom))
-        center = self.center(self.text2.get_rect())
-        self.surf.blit(self.text2, (center[0],center[1]+10))
+        self.surf.blit(self.text1, self.title(self.text1.get_rect()))
+        self.surf.blit(self.text2, self.content1(self.text2.get_rect()))
+
     def initBricks(self):
         self.brick_h = self.app.scaleToHeightPixel(1)
         self.brick_w = self.app.scaleToWidthPixel(4)
@@ -155,7 +149,6 @@ class CatGame(Activity):
         self.ball = Brick(image)
         centerY = self.center(self.ball.rect)[1]
         centerX = random.randint(int(self.WIDTH*0.1),int(self.WIDTH*0.9))
-        print(centerX)
         self.ball.position = (centerX ,centerY)
 
         self.group_player = pygame.sprite.Group()

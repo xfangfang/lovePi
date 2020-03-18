@@ -36,7 +36,8 @@ class App():
         self.key.update()
         if self.activity:
             self.activity.update()
-        self.surface.blit(self.activity.surf, (self.activity.x,self.activity.y))
+            self.surface.blit(self.activity.surf, (self.activity.x,self.activity.y))
+
     def test(self):
         # draw on the surface object
         DISPLAYSURF.fill(WHITE)
@@ -51,10 +52,6 @@ class App():
     def onKeyDown(self, key, e):
         if self.activity:
             self.activity.onKeyDown(key, e)
-        # if e == key.btn_key1:
-        #     list1 = [BLUE, RED, GREEN, BLACK]
-        #     pygame.draw.circle(DISPLAYSURF, random.choice(list1), (40, 50), 20, 0)
-        #     print('click key 1',e)
 
     def onKeyUp(self, key, e):
         if self.activity:
@@ -83,7 +80,7 @@ def main():
                 pygame.quit()
                 sys.exit()
         pygame.display.update()
-        app.fpsClock.tick(60)
+        app.fpsClock.tick(FPS)
 
 if __name__ == '__main__':
     main()

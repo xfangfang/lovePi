@@ -1,15 +1,17 @@
 
 import os
 
-PI = 1
-PC = 2
-
-ENV = PC
-HEIGHT = 128
-WIDTH = 128
-
+# var
 HEIGHT = 240
 WIDTH = 240
+FPS = 30
+
+
+# const
+PI = 1
+PC = 2
+ENV = PC
+
 
 if "GAME_DEV" in os.environ and os.environ["GAME_DEV"] == 'PI':
     ENV = PI
