@@ -6,8 +6,7 @@ import random
 from pygame.locals import *
 
 from keys import Key
-from activity.cat import CatGame
-from activity.loop import MainActivity
+from activity.mainActivity import MainActivity
 from utils import get_yaml_data
 from var import *
 
@@ -20,13 +19,12 @@ class App():
         self.fpsClock = pygame.time.Clock()
         self.HEIGHT = HEIGHT
         self.WIDTH = WIDTH
-        self.HEIGHT_SCALE = HEIGHT / 16
-        self.WIDTH_SCALE = HEIGHT / 16
         self.key = Key()
         self.key.setOnKeyUpListener(self.onKeyUp)
         self.key.setOnKeyDownListener(self.onKeyDown)
         self.key.setOnKeyContinueDownListener(self.onKeyContinueDown)
         self.activityStack = []
+        self.activityData = {}
 
     def currentActivity():
         doc = "The currentActivity property."
@@ -40,10 +38,10 @@ class App():
     currentActivity = property(**currentActivity())
 
     def scaleToHeightPixel(self, scale):
-        return scale * self.HEIGHT_SCALE
+        return int(scale * HEIGHT * 1.0 / 16)
 
     def scaleToWidthPixel(self, scale):
-        return scale * self.WIDTH_SCALE
+        return int(scale * WIDTH * 1.0 / 16)
 
     def update(self):
         self.key.update()

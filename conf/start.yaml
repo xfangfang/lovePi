@@ -1,2 +1,33 @@
-asd:
-  a: 123
+gameloop:
+- type: text
+  textCenterTitle: 想见你
+- type: text
+  textCenter1: 只想见你
+- type: text
+  textCenter1: 只想见你
+  textCenter2: 我只想见你
+- type: activity
+  activity: Choice
+  textCenterTitle: 玩把游戏吗？
+  textCenter1: A 开始吧
+  textCenter2: B 不太想玩
+- type: goto
+  if: CHOICE_NO
+  goto_tag: catgame_over
+- type: activity
+  activity: CatGame
+- type: goto
+  if: CATGAME_WIN
+  goto_tag: catgame_win
+- type: text
+  tag: catgame_lose
+  textCenter2: 你竟然输了
+- type: goto
+  if: CATGAME_LOSE
+  goto_tag: catgame_over
+- type: text
+  tag: catgame_win
+  textCenter2: 你赢得了比赛
+- type: text
+  tag: catgame_over
+  textCenter2: 开开心心每一天

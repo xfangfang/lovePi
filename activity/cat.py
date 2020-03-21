@@ -33,16 +33,11 @@ class Brick(pygame.sprite.Sprite):
     Y = property(**Y())
     position = property(**position())
 
-INIT = 0
-START = 1
-PAUSE = 2
-OVER = 3
-WIN = 4
 
 class CatGame(Activity):
     def __init__(self, app):
         Activity.__init__(self, app)
-        self.state = INIT
+        self.state = CATGAME_INIT
         self.initBricks()
 
     def init(self):
@@ -70,9 +65,9 @@ class CatGame(Activity):
         else:
             self.ball.Y += self.ball_y_v * self.ball_y_direction
             if self.ball_y_direction == 1 and self.ball.Y + self.ball.rect.height >= self.HEIGHT:
-                    self.state = OVER
+                    self.state = CATGAME_LOSE
             elif self.ball_y_direction == -1 and self.ball.Y <= 0:
-                    self.state = WIN
+                    self.state = CATGAME_WIN
         # ball x direction
         self.ball.X += self.ball_x_v * self.ball_x_direction
         if self.ball_x_direction == 1:
@@ -148,42 +143,40 @@ class CatGame(Activity):
         self.ball_x_direction = random.choice([-1,1])
 
     def update(self):
-        if self.state == INIT:
+        if self.state == CATGAME_INIT:
             self.init()
-        elif self.state == PAUSE:
+        elif self.state == CATGAME_PAUSE:
             self.pause()
-        elif self.state == START:
+        elif self.state == CATGAME_START:
             self.start()
-        elif self.state == OVER:
+            self.surf = pygame.transform.rotate(self.surf, -90)
+        elif self.state == CATGAME_LOSE:
             self.over()
-        elif self.state == WIN:
+        elif self.state == CATGAME_WIN:
             self.win()
 
-        self.surf = pygame.transform.rotate(self.surf, -90)
 
     def onKeyDown(self, key, e):
-        if self.state == INIT:
-            if e == key.btn_key1: self.state = START
-        elif self.state == START:
-            if e == key.btn_key2: self.state = PAUSE
-        elif self.state == PAUSE:
-            if e == key.btn_key1: self.state = START
-        elif self.state == OVER:
+        if self.state == CATGAME_INIT:
+            if e == key.btn_key1: self.state = CATGAME_START
+        elif self.state == CATGAME_START:
+            if e == key.btn_key2: self.state = CATGAME_PAUSE
+        elif self.state == CATGAME_PAUSE:
+            if e == key.btn_key1: self.state = CATGAME_START
+        elif self.state == CATGAME_LOSE:
             if e == key.btn_key1:
                 self.initBricks()
-                self.state = START
+                self.state = CATGAME_START
             elif e == key.btn_key2:
+                self.app.activityData['status'] = CATGAME_LOSE
                 self.app.close()
-        elif self.state == WIN:
+        elif self.state == CATGAME_WIN:
             if e == key.btn_key1:
-                self.initBricks()
-                self.state = START
-            elif e == key.btn_key2:
-                pass
-
+                self.app.activityData['status'] = CATGAME_WIN
+                self.app.close()
 
     def onKeyContinueDown(self, key, e):
-        if self.state == START:
+        if self.state == CATGAME_START:
             if e == key.btn_down:
                 self.user.X += 4
                 if self.user.X >= self.WIDTH - self.user.rect.width :

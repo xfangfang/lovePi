@@ -28,26 +28,26 @@ class Activity():
         return (w,h)
 
     def textCenterTitle(self, text, color=BLACK):
-        font = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(2))+10).render(text, True, color)
+        font = pygame.font.Font(FONT_FILE_PATH, self.app.scaleToHeightPixel(2.4)).render(text, True, color)
         rect = font.get_rect()
         w = int((self.app.WIDTH-rect.right)/2)
         h = int(self.app.HEIGHT*0.2)
         self.surf.blit(font,(w,h))
     def textCenter1(self, text, color=BLACK):
-        font = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render(text, True, color)
+        font = pygame.font.Font(FONT_FILE_PATH, self.app.scaleToHeightPixel(1.3)).render(text, True, color)
         rect = font.get_rect()
         w = int((self.app.WIDTH-rect.right)/2)
-        h = int(self.app.HEIGHT*0.5)
+        h = int(self.app.HEIGHT*0.45)
         self.surf.blit(font,(w,h))
     def textCenter2(self, text, color=BLACK):
-        font = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render(text, True, color)
+        font = pygame.font.Font(FONT_FILE_PATH, self.app.scaleToHeightPixel(1.3)).render(text, True, color)
         rect = font.get_rect()
         w = int((self.app.WIDTH-rect.right)/2)
         h = int(self.app.HEIGHT*0.6)
         self.surf.blit(font,(w,h))
     def textCenter3(self, text, color=BLACK):
-        font = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render(text, True, color)
+        font = pygame.font.Font(FONT_FILE_PATH, self.app.scaleToHeightPixel(1.3)).render(text, True, color)
         rect = font.get_rect()
         w = int((self.app.WIDTH-rect.right)/2)
-        h = int(self.app.HEIGHT*0.7)
+        h = int(self.app.HEIGHT*0.75)
         self.surf.blit(font,(w,h))
