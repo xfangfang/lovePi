@@ -47,22 +47,15 @@ class CatGame(Activity):
 
     def init(self):
         self.surf.fill(WHITE)
-        self.text1 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(2))+10).render('加油！', True, BLACK)
-        self.text2 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render('帮助你的男人打败他', True, BLACK)
-        self.text3 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render('(按 A 开始, B 暂停)', True, BLACK)
-        self.surf.blit(self.text1, self.title(self.text1.get_rect()))
-        self.surf.blit(self.text2, self.content1(self.text2.get_rect()))
-        self.surf.blit(self.text3, self.content3(self.text3.get_rect()))
+        self.textCenterTitle('加油！')
+        self.textCenter1('帮助你的男人打败他')
+        self.textCenter2('A 开始')
+        self.textCenter3('B 暂停')
 
     def pause(self):
         self.surf.fill(WHITE)
-        self.text1 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(2))+10).render('暂停', True, BLACK)
-        self.text2 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render('按 A 继续游戏', True, BLACK)
-        rect = self.text1.get_rect()
-        center = self.center(rect)
-        self.surf.blit(self.text1, (center[0], center[1] - rect.bottom))
-        center = self.center(self.text2.get_rect())
-        self.surf.blit(self.text2, (center[0],center[1]+10))
+        self.textCenterTitle('暂停')
+        self.textCenter1('A 继续游戏')
 
     def start(self):
         self.ball_x_v = 2
@@ -118,20 +111,14 @@ class CatGame(Activity):
 
     def over(self):
         self.surf.fill(WHITE)
-        self.text1 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(2))+10).render('游戏结束', True, BLACK)
-        self.text2 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render('A 重新开始', True, BLACK)
-        self.text3 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render('B 认命了', True, BLACK)
-
-        self.surf.blit(self.text1, self.title(self.text1.get_rect()))
-        self.surf.blit(self.text2, self.content1(self.text2.get_rect()))
-        self.surf.blit(self.text3, self.content2(self.text3.get_rect()))
+        self.textCenterTitle('游戏结束')
+        self.textCenter1('A 重新开始')
+        self.textCenter2('B 认命了')
 
     def win(self):
         self.surf.fill(WHITE)
-        self.text1 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(2))+10).render('你赢啦', True, BLACK)
-        self.text2 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render('A 返回', True, BLACK)
-        self.surf.blit(self.text1, self.title(self.text1.get_rect()))
-        self.surf.blit(self.text2, self.content1(self.text2.get_rect()))
+        self.textCenterTitle('你赢啦')
+        self.textCenter1('A 返回')
 
     def initBricks(self):
         self.brick_h = self.app.scaleToHeightPixel(1)

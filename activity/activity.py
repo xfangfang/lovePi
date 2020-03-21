@@ -1,4 +1,5 @@
 import pygame
+from var import *
 
 class Activity():
     def __init__(self, app):
@@ -26,19 +27,27 @@ class Activity():
         h = int((self.app.HEIGHT-rect.bottom)/2)
         return (w,h)
 
-    def title(self, rect):
+    def textCenterTitle(self, text, color=BLACK):
+        font = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(2))+10).render(text, True, color)
+        rect = font.get_rect()
         w = int((self.app.WIDTH-rect.right)/2)
         h = int(self.app.HEIGHT*0.2)
-        return (w,h)
-    def content1(self, rect):
+        self.surf.blit(font,(w,h))
+    def textCenter1(self, text, color=BLACK):
+        font = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render(text, True, color)
+        rect = font.get_rect()
         w = int((self.app.WIDTH-rect.right)/2)
         h = int(self.app.HEIGHT*0.5)
-        return (w,h)
-    def content2(self, rect):
+        self.surf.blit(font,(w,h))
+    def textCenter2(self, text, color=BLACK):
+        font = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render(text, True, color)
+        rect = font.get_rect()
         w = int((self.app.WIDTH-rect.right)/2)
         h = int(self.app.HEIGHT*0.6)
-        return (w,h)
-    def content3(self, rect):
+        self.surf.blit(font,(w,h))
+    def textCenter3(self, text, color=BLACK):
+        font = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render(text, True, color)
+        rect = font.get_rect()
         w = int((self.app.WIDTH-rect.right)/2)
         h = int(self.app.HEIGHT*0.7)
-        return (w,h)
+        self.surf.blit(font,(w,h))
