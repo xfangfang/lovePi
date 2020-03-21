@@ -7,6 +7,7 @@ from pygame.locals import *
 
 from keys import Key
 from activity.cat import CatGame
+from activity.loop import MainActivity
 from utils import get_yaml_data
 from var import *
 
@@ -25,6 +26,18 @@ class App():
         self.key.setOnKeyUpListener(self.onKeyUp)
         self.key.setOnKeyDownListener(self.onKeyDown)
         self.key.setOnKeyContinueDownListener(self.onKeyContinueDown)
+        self.activityStack = []
+
+    def currentActivity():
+        doc = "The currentActivity property."
+        def fget(self):
+            nums = len(self.activityStack)
+            if nums == 0:
+                return None
+            else:
+                return self.activityStack[nums-1]
+        return locals()
+    currentActivity = property(**currentActivity())
 
     def scaleToHeightPixel(self, scale):
         return scale * self.HEIGHT_SCALE
@@ -34,9 +47,9 @@ class App():
 
     def update(self):
         self.key.update()
-        if self.activity:
-            self.activity.update()
-            self.surface.blit(self.activity.surf, (self.activity.x,self.activity.y))
+        if self.currentActivity:
+            self.currentActivity.update()
+            self.surface.blit(self.currentActivity.surf, (self.currentActivity.x,self.currentActivity.y))
 
     def test(self):
         # draw on the surface object
@@ -50,25 +63,29 @@ class App():
         pygame.draw.rect(DISPLAYSURF, RED, (100, 100, 100, 50))
 
     def onKeyDown(self, key, e):
-        if self.activity:
-            self.activity.onKeyDown(key, e)
+        if self.currentActivity:
+            self.currentActivity.onKeyDown(key, e)
 
     def onKeyUp(self, key, e):
-        if self.activity:
-            self.activity.onKeyUp(key, e)
+        if self.currentActivity:
+            self.currentActivity.onKeyUp(key, e)
 
     def onKeyContinueDown(self, key, e):
-        if self.activity:
-            self.activity.onKeyContinueDown(key, e)
+        if self.currentActivity:
+            self.currentActivity.onKeyContinueDown(key, e)
 
-    def setActivity(self, activity):
-        self.activity = activity
+    def openActivity(self, activityClass):
+        activity = activityClass(self)
+        self.activityStack.append(activity)
+
+    def close(self):
+        if self.currentActivity:
+            self.activityStack.pop()
 
 def main():
     # main app
     app = App()
-    catgame = CatGame(app)
-    app.setActivity(catgame)
+    app.openActivity(MainActivity)
 
     # run the game loop
     while True:

@@ -4,7 +4,7 @@ import os
 # var
 HEIGHT = 240
 WIDTH = 240
-FPS = 30
+FPS = 60
 
 
 # const

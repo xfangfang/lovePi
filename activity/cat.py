@@ -57,7 +57,7 @@ class CatGame(Activity):
     def pause(self):
         self.surf.fill(WHITE)
         self.text1 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(2))+10).render('暂停', True, BLACK)
-        self.text2 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render('加油哦', True, BLACK)
+        self.text2 = pygame.font.Font(FONT_FILE_PATH, int(self.app.scaleToHeightPixel(1))+4).render('按 A 继续游戏', True, BLACK)
         rect = self.text1.get_rect()
         center = self.center(rect)
         self.surf.blit(self.text1, (center[0], center[1] - rect.bottom))
@@ -180,13 +180,13 @@ class CatGame(Activity):
         elif self.state == START:
             if e == key.btn_key2: self.state = PAUSE
         elif self.state == PAUSE:
-            if e == key.btn_key2: self.state = START
+            if e == key.btn_key1: self.state = START
         elif self.state == OVER:
             if e == key.btn_key1:
                 self.initBricks()
                 self.state = START
             elif e == key.btn_key2:
-                pass
+                self.app.close()
         elif self.state == WIN:
             if e == key.btn_key1:
                 self.initBricks()
