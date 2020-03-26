@@ -37,6 +37,7 @@ GREEN = (  0, 255,   0)
 BLUE  = (  0,   0, 255)
 BRIGHTBLUE =    (  0,  50, 255)
 DARKTURQUOISE = (  3,  54,  73)
+BROWN = (169, 121,  80)
 
 
 CATGAME_INIT = 0

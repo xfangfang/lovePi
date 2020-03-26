@@ -7,7 +7,7 @@ gameloop:
     animate: activityLinearMove
     start: (0,-1)
     end: (0,0)
-    speed: 0.1
+    speed: 0.2
   animateOut:
     animate: activityLinearMove
     start: (0,0)
@@ -21,7 +21,7 @@ gameloop:
     position: (-1,0.5)
     color: WHITE
 - type: activity
-  background: (169,121,80)
+  background: BROWN
   activity: Text
   animateIn:
     animate: activityLinearMove

@@ -16,6 +16,7 @@ class App():
         # pygame.display.set_caption('LovePi')
         pygame.mouse.set_visible(False)
         self.surface = pygame.display.set_mode((WIDTH, HEIGHT))
+        self.surface.fill(WHITE)
         self.fpsClock = pygame.time.Clock()
         self.HEIGHT = HEIGHT
         self.WIDTH = WIDTH
