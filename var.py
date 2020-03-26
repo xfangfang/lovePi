@@ -1,5 +1,8 @@
 
 import os
+from sys import argv
+
+script,first = argv
 
 # var
 HEIGHT = 240
@@ -13,7 +16,7 @@ PC = 2
 ENV = PC
 
 
-if "GAME_DEV" in os.environ and os.environ["GAME_DEV"] == 'PI':
+if first == 'PI':
     ENV = PI
     print('ENV: PI')
     os.environ["SDL_FBDEV"] = "/dev/fb1"
