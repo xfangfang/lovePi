@@ -25,6 +25,7 @@ class App():
         self.key.setOnKeyContinueDownListener(self.onKeyContinueDown)
         self.activityStack = []
         self.activityData = {}
+        self.background = None
 
     def currentActivity():
         doc = "The currentActivity property."
@@ -43,22 +44,35 @@ class App():
     def scaleToWidthPixel(self, scale):
         return int(scale * WIDTH * 1.0 / 16)
 
+    def text(self, text='', size=FONT_NORMAL, position=(0,0), color=BLACK):
+        font = pygame.font.Font(FONT_FILE_PATH, self.scaleToHeightPixel(size)).render(text, True, color)
+        rect = font.get_rect()
+        x = position[0]*1.0
+        y = position[1]*1.0
+        if x < 0:
+            # auto center
+            w = int((self.WIDTH-rect.right)/2)
+        else:
+            w = int(self.WIDTH*x)
+        if y < 0:
+            h = int((self.HEIGHT-rect.bottom)/2)
+        else:
+            h = int(self.HEIGHT*y)
+        self.surf.blit(font,(w,h))
+
     def update(self):
-        self.key.update()
+        if self.background:
+            if  isinstance(self.background,tuple):
+                self.surface.fill(self.background)
+            else:
+                back = pygame.image.load(self.background).convert()
+                back = pygame.transform.scale(back,(self.WIDTH,self.HEIGHT))
+                self.surface.blit(back,(0,0))
         if self.currentActivity:
             self.currentActivity.update()
             self.surface.blit(self.currentActivity.surf, (self.currentActivity.x,self.currentActivity.y))
 
-    def test(self):
-        # draw on the surface object
-        DISPLAYSURF.fill(WHITE)
-        pygame.draw.polygon(DISPLAYSURF, GREEN, ((16, 0), (36, 0), (56, 27), (0, 106)))
-        pygame.draw.line(DISPLAYSURF, BLUE, (60, 60), (120, 60), 4)
-        pygame.draw.line(DISPLAYSURF, BLUE, (120, 60), (60, 120))
-        pygame.draw.line(DISPLAYSURF, BLUE, (60, 120), (120, 120), 4)
-        pygame.draw.circle(DISPLAYSURF, BLUE, (40, 50), 20, 0)
-        pygame.draw.ellipse(DISPLAYSURF, RED, (50, 50, 40, 80), 1)
-        pygame.draw.rect(DISPLAYSURF, RED, (100, 100, 100, 50))
+        self.key.update()
 
     def onKeyDown(self, key, e):
         if self.currentActivity:
@@ -87,9 +101,7 @@ def main():
 
     # run the game loop
     while True:
-        app.surface.fill(WHITE)
         app.update()
-
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()

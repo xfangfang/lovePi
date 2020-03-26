@@ -1,11 +1,69 @@
 gameloop:
-- type: text
-  textCenterTitle: 想见你
-- type: text
-  textCenter1: 只想见你
-- type: text
-  textCenter1: 只想见你
-  textCenter2: 我只想见你
+- type: activity
+  activity: Text
+  appBackground: BACKGROUND_WM
+  animateIn:
+    animate: activityLinearMove
+    start: (0,-1)
+    end: (0,0)
+    speed: 0.05
+  animateOut:
+    animate: activityLinearMove
+    start: (0,0)
+    end: (0,1)
+  texts:
+  - content: LOVE IS YOU
+    position: (-1,0.15)
+    size: FONT_TITLE
+    color: WHITE
+  - content: A 开始游戏
+    position: (-1,0.5)
+    color: WHITE
+- type: activity
+  activity: Text
+  animateIn:
+    animate: activityLinearMove
+    start: (0,-1)
+    end: (0,0)
+  animateOut:
+    animate: activityLinearMove
+    start: (0,0)
+    end: (0,1)
+  texts:
+  - content: LOVE IS YOU
+    position: (-1,0.15)
+    color: WHITE
+    size: FONT_TITLE
+  - content: 只想见你
+    color: WHITE
+    position: (-1,0.45)
+- type: activity
+  activity: Text
+  texts:
+  - content: 想见你
+    position: (-1,0.15)
+    size: FONT_TITLE
+  - content: 只想见你
+    color: WHITE
+    position: (-1,0.45)
+  - content: 未来过去
+    color: WHITE
+    position: (-1,0.55)
+- type: activity
+  activity: Text
+  texts:
+  - content: 想见你
+    position: (-1,0.15)
+    size: FONT_TITLE
+  - content: 只想见你
+    color: WHITE
+    position: (-1,0.45)
+  - content: 未来过去
+    color: WHITE
+    position: (-1,0.55)
+  - content: 我只想见你
+    color: WHITE
+    position: (-1,0.65)
 - type: activity
   activity: Choice
   textCenterTitle: 玩把游戏吗？
@@ -19,15 +77,18 @@ gameloop:
 - type: goto
   if: CATGAME_WIN
   goto_tag: catgame_win
-- type: text
+- type: activity
+  activity: Text
   tag: catgame_lose
   textCenter2: 你竟然输了
 - type: goto
   if: CATGAME_LOSE
   goto_tag: catgame_over
-- type: text
+- type: activity
+  activity: Text
   tag: catgame_win
   textCenter2: 你赢得了比赛
-- type: text
+- type: activity
+  activity: Text
   tag: catgame_over
   textCenter2: 开开心心每一天

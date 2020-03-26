@@ -1,5 +1,7 @@
 import pygame
+import math
 from var import *
+from animate import *
 
 class Activity():
     def __init__(self, app):
@@ -9,23 +11,88 @@ class Activity():
         self.x = 0
         self.y = 0
         self.surf = pygame.Surface((app.WIDTH, app.HEIGHT))
+        self.background = None
+
+        # animate
+        self.activity_state = ACTIVITY_START
+        self._animateIn = None
+        self._animateOut = None
+        if 'state' in self.app.activityData:
+            if 'animateIn' in self.app.activityData['state']:
+                self._animateIn = eval(self.app.activityData['state']['animateIn']['animate'])
+                self._animateInStart = eval(self.app.activityData['state']['animateIn']['start'])
+                self._animateInEnd = eval(self.app.activityData['state']['animateIn']['end'])
+                self._animateInSpeed = 0.3
+                if 'speed' in self.app.activityData['state']['animateIn']:
+                    self._animateInSpeed = eval(self.app.activityData['state']['animateIn']['speed'])
+            if 'animateOut' in self.app.activityData['state']:
+                self._animateOut = eval(self.app.activityData['state']['animateOut']['animate'])
+                self._animateOutStart = eval(self.app.activityData['state']['animateOut']['start'])
+                self._animateOutEnd = eval(self.app.activityData['state']['animateOut']['end'])
+                self._animateOutSpeed = 0.3
+                if 'speed' in self.app.activityData['state']['animateOut']:
+                    self._animateOutSpeed = eval(self.app.activityData['state']['animateOut']['speed'])
 
     def update(self):
-        pass
+        if self.background:
+            if  isinstance(self.background,tuple):
+                self.surf.fill(self.background)
+            else:
+                back = pygame.image.load(self.background).convert()
+                back = pygame.transform.scale(back,(self.WIDTH,self.HEIGHT))
+                self.surf.blit(back,(0,0))
+        else:
+            self.surf = pygame.Surface((self.WIDTH, self.HEIGHT))
 
+        if self.activity_state == ACTIVITY_START:
+            if self._animateIn:
+                if self._animateIn(self,self._animateInStart,self._animateInEnd,self._animateInSpeed):
+                    self.activity_state = ACTIVITY_RUN
+            else:
+                self.activity_state = ACTIVITY_RUN
+        elif self.activity_state == ACTIVITY_CLOSE:
+            if self._animateOut:
+                if self._animateOut(self,self._animateOutStart,self._animateOutEnd,self._animateOutSpeed):
+                    self.app.close()
+            else:
+                self.app.close()
+    def close(self):
+        self.activity_state = ACTIVITY_CLOSE
+
+# key
     def onKeyDown(self, key, e):
-        pass
+        if self.activity_state == ACTIVITY_START or self.activity_state == ACTIVITY_CLOSE:
+            return
 
     def onKeyContinueDown(self, key, e):
-        pass
+        if self.activity_state == ACTIVITY_START or self.activity_state == ACTIVITY_CLOSE:
+            return
 
     def onKeyUp(self, key, e):
-        pass
+        if self.activity_state == ACTIVITY_START or self.activity_state == ACTIVITY_CLOSE:
+            return
 
+# position
     def center(self, rect):
         w = int((self.app.WIDTH-rect.right)/2)
         h = int((self.app.HEIGHT-rect.bottom)/2)
         return (w,h)
+
+    def text(self, text='', size=FONT_NORMAL, position=(0,0), color=BLACK):
+        font = pygame.font.Font(FONT_FILE_PATH, self.app.scaleToHeightPixel(size)).render(text, True, color)
+        rect = font.get_rect()
+        x = position[0]*1.0
+        y = position[1]*1.0
+        if x < 0:
+            # auto center
+            w = int((self.app.WIDTH-rect.right)/2)
+        else:
+            w = int(self.app.WIDTH*x)
+        if y < 0:
+            h = int((self.app.HEIGHT-rect.bottom)/2)
+        else:
+            h = int(self.app.HEIGHT*y)
+        self.surf.blit(font,(w,h))
 
     def textCenterTitle(self, text, color=BLACK):
         font = pygame.font.Font(FONT_FILE_PATH, self.app.scaleToHeightPixel(2.4)).render(text, True, color)

@@ -41,7 +41,7 @@ class CatGame(Activity):
         self.initBricks()
 
     def init(self):
-        self.surf.fill(WHITE)
+        # self.surf.fill(WHITE)
         self.textCenterTitle('加油！')
         self.textCenter1('帮助你的男人打败他')
         self.textCenter2('A 开始')

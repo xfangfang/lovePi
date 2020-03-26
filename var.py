@@ -4,7 +4,7 @@ import os
 # var
 HEIGHT = 240
 WIDTH = 240
-FPS = 60
+FPS = 30
 
 
 # const
@@ -25,6 +25,7 @@ CONF_START = 'conf/start.yaml'
 CONF_ACTIVITY = 'conf/activity.yaml'
 CONF_ANIMATE = 'conf/animate.yaml'
 FONT_FILE_PATH = 'assets/FZMiaoWuJW.TTF'
+BACKGROUND_WM = 'assets/background.png'
 
 BLACK = (  0,   0,   0)
 WHITE = (255, 255, 255)
@@ -43,3 +44,10 @@ CATGAME_WIN = 4
 
 CHOICE_YES = 0
 CHOICE_NO = 1
+
+ACTIVITY_START = 0
+ACTIVITY_RUN = 1
+ACTIVITY_CLOSE = 2
+
+FONT_NORMAL = 1.3
+FONT_TITLE = 2.4
