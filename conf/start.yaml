@@ -1,7 +1,7 @@
 gameloop:
 - type: activity
   activity: Text
-  appBackground: (169,121,80)
+  appBackground: BROWN
   background: BACKGROUND_WM
   animateIn:
     animate: activityLinearMove
@@ -41,6 +41,7 @@ gameloop:
     position: (-1,0.45)
 - type: activity
   activity: Text
+  appBackground: WHITE
   texts:
   - content: 想见你
     position: (-1,0.15)
@@ -53,6 +54,7 @@ gameloop:
     position: (-1,0.55)
 - type: activity
   activity: Text
+  appBackground: WHITE
   texts:
   - content: 想见你
     position: (-1,0.15)
@@ -81,6 +83,7 @@ gameloop:
   goto_tag: catgame_win
 - type: activity
   activity: Text
+  appBackground: WHITE
   tag: catgame_lose
   textCenter2: 你竟然输了
 - type: goto
@@ -88,9 +91,11 @@ gameloop:
   goto_tag: catgame_over
 - type: activity
   activity: Text
+  appBackground: WHITE
   tag: catgame_win
   textCenter2: 你赢得了比赛
 - type: activity
   activity: Text
+  appBackground: BROWN
   tag: catgame_over
   textCenter2: 开开心心每一天

@@ -99,7 +99,7 @@ def main():
     # main app
     app = App()
     app.openActivity(MainActivity)
-
+    print("open activity")
     # run the game loop
     while True:
         app.update()
