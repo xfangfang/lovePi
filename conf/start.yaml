@@ -1,12 +1,13 @@
 gameloop:
 - type: activity
   activity: Text
-  appBackground: BACKGROUND_WM
+  appBackground: (169,121,80)
+  background: BACKGROUND_WM
   animateIn:
     animate: activityLinearMove
     start: (0,-1)
     end: (0,0)
-    speed: 0.05
+    speed: 0.1
   animateOut:
     animate: activityLinearMove
     start: (0,0)
@@ -20,21 +21,22 @@ gameloop:
     position: (-1,0.5)
     color: WHITE
 - type: activity
+  background: (169,121,80)
   activity: Text
   animateIn:
     animate: activityLinearMove
-    start: (0,-1)
+    start: (0,1)
     end: (0,0)
   animateOut:
     animate: activityLinearMove
     start: (0,0)
-    end: (0,1)
+    end: (0,-1)
   texts:
-  - content: LOVE IS YOU
+  - content: 第一章
     position: (-1,0.15)
     color: WHITE
     size: FONT_TITLE
-  - content: 只想见你
+  - content: 探探女孩
     color: WHITE
     position: (-1,0.45)
 - type: activity

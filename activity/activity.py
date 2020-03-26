@@ -62,7 +62,8 @@ class Activity():
 # key
     def onKeyDown(self, key, e):
         if self.activity_state == ACTIVITY_START or self.activity_state == ACTIVITY_CLOSE:
-            return
+            return True
+        return False
 
     def onKeyContinueDown(self, key, e):
         if self.activity_state == ACTIVITY_START or self.activity_state == ACTIVITY_CLOSE:

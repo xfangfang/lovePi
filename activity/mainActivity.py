@@ -132,7 +132,7 @@ class Text(Activity):
 
 
     def onKeyDown(self, key, e):
-        # super().onKeyDown(key, e)
+        if super().onKeyDown(key, e): return
         if e == key.btn_key1:
             self.close()
 

@@ -16,11 +16,11 @@ def activityLinearMove(activity, start, end, speed=0.3):
         dX = endX-activity.x
         activity.y += dY*speed
         activity.x += dX*speed
-        if math.fabs(dY) < 5:
+        if math.fabs(dY) < 2:
             activity.y = endY
-        if math.fabs(dX) < 5:
+        if math.fabs(dX) < 2:
             activity.x = endX
-        if math.fabs(dY) < 5 and math.fabs(dX) < 5:
+        if math.fabs(dY) < 2 and math.fabs(dX) < 2:
             animate_start_time = None
             return True
     else:
