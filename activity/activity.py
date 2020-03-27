@@ -13,6 +13,7 @@ class Activity():
         self.surf = pygame.Surface((app.WIDTH, app.HEIGHT))
         self.background = None
         self.backgroundImage = None
+        self.pics = []
 
         # animate
         self.activity_state = ACTIVITY_START
@@ -35,7 +36,7 @@ class Activity():
                     self._animateOutSpeed = eval(self.app.activityData['state']['animateOut']['speed'])
 
     def update(self):
-        if self.background:
+        if self.background != None:
             if  isinstance(self.background,tuple):
                 self.surf.fill(self.background)
             else:
@@ -44,7 +45,8 @@ class Activity():
                     self.backgroundImage = pygame.transform.scale(self.backgroundImage,(self.WIDTH,self.HEIGHT))
                 self.surf.blit(self.backgroundImage,(0,0))
         else:
-            self.surf = pygame.Surface((self.WIDTH, self.HEIGHT))
+            # self.surf = pygame.Surface((self.WIDTH, self.HEIGHT))
+            self.surf.fill(BROWN)
 
         if self.activity_state == ACTIVITY_START:
             if self._animateIn:
@@ -81,9 +83,7 @@ class Activity():
         h = int((self.app.HEIGHT-rect.bottom)/2)
         return (w,h)
 
-    def text(self, text='', size=FONT_NORMAL, position=(0,0), color=BLACK):
-        font = pygame.font.Font(FONT_FILE_PATH, self.app.scaleToHeightPixel(size)).render(text, True, color)
-        rect = font.get_rect()
+    def position(self, rect, position):
         x = position[0]*1.0
         y = position[1]*1.0
         if x < 0:
@@ -95,7 +95,18 @@ class Activity():
             h = int((self.app.HEIGHT-rect.bottom)/2)
         else:
             h = int(self.app.HEIGHT*y)
-        self.surf.blit(font,(w,h))
+        return (w,h)
+
+    def picture(self, content, size, position):
+        size = (int(size[0]*1.0*self.WIDTH),int(size[1]*1.0*self.HEIGHT))
+        content = pygame.image.load(content).convert_alpha()
+        content = pygame.transform.scale(content,size)
+        self.surf.blit(content,self.position(content.get_rect(),position))
+
+    def text(self, text='', size=FONT_NORMAL, position=(0,0), color=BLACK):
+        font = pygame.font.Font(FONT_FILE_PATH, self.app.scaleToHeightPixel(size)).render(text, True, color)
+        rect = font.get_rect()
+        self.surf.blit(font,self.position(rect,position))
 
     def textCenterTitle(self, text, color=BLACK):
         font = pygame.font.Font(FONT_FILE_PATH, self.app.scaleToHeightPixel(2.4)).render(text, True, color)

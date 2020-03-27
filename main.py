@@ -16,7 +16,7 @@ class App():
         # pygame.display.set_caption('LovePi')
         pygame.mouse.set_visible(False)
         self.surface = pygame.display.set_mode((WIDTH, HEIGHT))
-        self.surface.fill(WHITE)
+        # self.surface.fill(WHITE)
         self.fpsClock = pygame.time.Clock()
         self.HEIGHT = HEIGHT
         self.WIDTH = WIDTH
@@ -62,7 +62,7 @@ class App():
         self.surf.blit(font,(w,h))
 
     def update(self):
-        if self.background:
+        if self.background != None:
             if  isinstance(self.background,tuple):
                 self.surface.fill(self.background)
             else:

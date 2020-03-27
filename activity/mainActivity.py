@@ -114,10 +114,17 @@ class Text(Activity):
         super().update()
         state = self.app.activityData['state']
         if 'background' in state: self.background =  eval(state['background'])
+        if 'pics' in state:
+            for pic in state['pics']:
+                position = eval(pic['position'])
+                size = eval(pic['size'])
+                content = eval(pic['content'])
+                self.picture(content, size, position)
+
         if 'textCenterTitle' in state: self.text(text=state['textCenterTitle'], size=FONT_TITLE, position=(-1,0.15))
         if 'textCenter1' in state: self.text(text=state['textCenter1'], size=FONT_NORMAL, position=(-1,0.45))
-        if 'textCenter2' in state: self.textCenter2(state['textCenter2'])
-        if 'textCenter3' in state: self.textCenter3(state['textCenter3'])
+        if 'textCenter2' in state: self.text(text=state['textCenter2'], size=FONT_NORMAL, position=(-1,0.55))
+        if 'textCenter3' in state: self.text(text=state['textCenter3'], size=FONT_NORMAL, position=(-1,0.65))
         if 'texts' in state:
             for text in state['texts']:
                 color = BLACK

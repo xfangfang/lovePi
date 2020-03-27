@@ -28,7 +28,11 @@ CONF_START = 'conf/start.yaml'
 CONF_ACTIVITY = 'conf/activity.yaml'
 CONF_ANIMATE = 'conf/animate.yaml'
 FONT_FILE_PATH = 'assets/FZMiaoWuJW.TTF'
+
 BACKGROUND_WM = 'assets/background.png'
+PIC_TANTAN = 'assets/tantan.png'
+PIC_SPEEK_LEFT = 'assets/speek_left.png'
+PIC_SPEEK_RIGHT = 'assets/speek_right.png'
 
 BLACK = (  0,   0,   0)
 WHITE = (255, 255, 255)

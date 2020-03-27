@@ -39,6 +39,10 @@ gameloop:
   - content: 探探女孩
     color: WHITE
     position: (-1,0.45)
+  pics:
+  - content: PIC_TANTAN
+    position: (0.2,-1)
+    size: (0.1,0.1)
 - type: activity
   activity: Text
   appBackground: WHITE
@@ -46,12 +50,16 @@ gameloop:
   - content: 想见你
     position: (-1,0.15)
     size: FONT_TITLE
-  - content: 只想见你
-    color: WHITE
-    position: (-1,0.45)
-  - content: 未来过去
-    color: WHITE
-    position: (-1,0.55)
+  - content: 只想见你，未来过去
+    color: BLACK
+    position: (-1,0.8)
+  - content: 我只想见你
+    color: BLACK
+    position: (-1,0.9)
+  pics:
+  - content: PIC_SPEEK_RIGHT
+    position: (0,0.5)
+    size: (1,0.7)
 - type: activity
   activity: Text
   appBackground: WHITE
@@ -83,7 +91,7 @@ gameloop:
   goto_tag: catgame_win
 - type: activity
   activity: Text
-  appBackground: WHITE
+  background: WHITE
   tag: catgame_lose
   textCenter2: 你竟然输了
 - type: goto
@@ -91,11 +99,11 @@ gameloop:
   goto_tag: catgame_over
 - type: activity
   activity: Text
-  appBackground: WHITE
+  background: WHITE
   tag: catgame_win
   textCenter2: 你赢得了比赛
 - type: activity
   activity: Text
-  appBackground: BROWN
+  background: BROWN
   tag: catgame_over
   textCenter2: 开开心心每一天
