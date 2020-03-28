@@ -10,6 +10,9 @@ from activity.mainActivity import MainActivity
 from utils import get_yaml_data
 from var import *
 
+import pygame.display
+pygame.display.init()
+
 class App():
     def __init__(self):
         pygame.init()
