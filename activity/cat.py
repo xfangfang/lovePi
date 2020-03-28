@@ -53,8 +53,8 @@ class CatGame(Activity):
         self.textCenter1('A 继续游戏')
 
     def start(self):
-        self.ball_x_v = 2
-        self.ball_y_v = 2
+        self.ball_x_v = 4
+        self.ball_y_v = 4
         # ball y direction
         if pygame.sprite.spritecollide(self.ball, self.group_player, False):
             if self.ball_y_direction == 1:

@@ -42,14 +42,9 @@ class MainActivity(Activity):
             else:
                 self.gameState -= 1
 
-    def onKeyDown(self, key, e):
-        if e == key.btn_key2:
-            if self.background == WHITE:
-                self.background = RED
-            else:
-                self.background = WHITE
-        elif e == key.btn_key1:
-            self.gameState += 1
+    # def onKeyDown(self, key, e):
+    #     if e == key.btn_key1:
+    #         self.gameState += 1
 
 class MySprite(pygame.sprite.Sprite):
     def __init__(self, target):
@@ -99,7 +94,7 @@ class MySprite(pygame.sprite.Sprite):
             self.image = self.master_image.subsurface(rect)
             self.old_frame = self.frame
 
-class Start(Activity):
+class StartActivity(Activity):
     def __init__(self, app):
         Activity.__init__(self, app)
         self.background = BACKGROUND_WM
@@ -128,13 +123,16 @@ class Text(Activity):
     def update(self):
         super().update()
         state = self.app.activityData['state']
-        if 'background' in state: self.background =  eval(state['background'])
+        # if 'background' in state: self.background =  eval(state['background'])
         if 'pics' in state:
             for pic in state['pics']:
-                position = eval(pic['position'])
-                size = eval(pic['size'])
                 content = eval(pic['content'])
-                self.picture(content, size, position)
+                if isinstance(content,tuple):
+                    self.surf.fill(content)
+                else:
+                    position = eval(pic['position'])
+                    size = eval(pic['size'])
+                    self.picture(content, size, position)
 
         if 'textCenterTitle' in state: self.text(text=state['textCenterTitle'], size=FONT_TITLE, position=(CENTER,0.15))
         if 'textCenter1' in state: self.text(text=state['textCenter1'], size=FONT_NORMAL, position=(CENTER,0.45))
@@ -158,22 +156,12 @@ class Text(Activity):
         if e == key.btn_key1:
             self.close()
 
-
-
-class Choice(Activity):
-    def __init__(self, app):
-        Activity.__init__(self, app)
-    def update(self):
-        self.surf.fill(WHITE)
-        state = self.app.activityData['state']
-        if 'textCenterTitle' in state: self.textCenterTitle(state['textCenterTitle'])
-        if 'textCenter1' in state: self.textCenter1(state['textCenter1'])
-        if 'textCenter2' in state: self.textCenter2(state['textCenter2'])
-        if 'textCenter3' in state: self.textCenter3(state['textCenter3'])
+class Choice(Text):
     def onKeyDown(self, key, e):
+        Activity.onKeyDown(self, key, e)
         if e == key.btn_key1:
             self.app.activityData['status'] = CHOICE_YES
-            self.app.close()
+            self.close()
         elif e == key.btn_key2:
             self.app.activityData['status'] = CHOICE_NO
-            self.app.close()
+            self.close()

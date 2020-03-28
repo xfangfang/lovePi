@@ -36,18 +36,6 @@ class Activity():
                     self._animateOutSpeed = eval(self.app.activityData['state']['animateOut']['speed'])
 
     def update(self):
-        if self.background != None:
-            if  isinstance(self.background,tuple):
-                self.surf.fill(self.background)
-            else:
-                if self.backgroundImage == None:
-                    self.backgroundImage = pygame.image.load(self.background).convert()
-                    self.backgroundImage = pygame.transform.scale(self.backgroundImage,(self.WIDTH,self.HEIGHT))
-                self.surf.blit(self.backgroundImage,(0,0))
-        else:
-            self.surf = pygame.Surface((self.WIDTH, self.HEIGHT))
-            # self.surf.fill(BROWN)
-
         if self.activity_state == ACTIVITY_START:
             if self._animateIn:
                 if self._animateIn(self,self._animateInStart,self._animateInEnd,self._animateInSpeed):
@@ -60,6 +48,19 @@ class Activity():
                     self.app.close()
             else:
                 self.app.close()
+
+        if self.background != None:
+            if  isinstance(self.background,tuple):
+                self.surf.fill(self.background)
+                print('activity back')
+            else:
+                if self.backgroundImage == None:
+                    self.backgroundImage = pygame.image.load(self.background).convert()
+                    self.backgroundImage = pygame.transform.scale(self.backgroundImage,(self.WIDTH,self.HEIGHT))
+                self.surf.blit(self.backgroundImage,(0,0))
+        else:
+            self.surf = pygame.Surface((self.WIDTH, self.HEIGHT))
+            # self.surf.fill(BROWN)
     def close(self):
         self.activity_state = ACTIVITY_CLOSE
 

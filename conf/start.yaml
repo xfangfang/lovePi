@@ -1,7 +1,7 @@
 gameloop:
 - type: activity
-  activity: Start
-  appBackground: BROWN
+  activity: StartActivity
+  background: BROWN
   animateIn:
     animate: activityLinearMove
     start: (0,-1)
@@ -12,7 +12,6 @@ gameloop:
     start: (0,0)
     end: (0,1)
 - type: activity
-  background: BROWN
   activity: Text
   animateIn:
     animate: activityLinearMove
@@ -31,12 +30,12 @@ gameloop:
     color: WHITE
     position: (CENTER,0.45)
   pics:
+  - content: BROWN
   - content: PIC_TANTAN
     position: (0.2,CENTER)
     size: (0.1,0.1)
 - type: activity
   activity: Text
-  appBackground: WHITE
   background: WHITE
   animateIn:
     animate: activityLinearMove
@@ -48,22 +47,22 @@ gameloop:
   - content: 我想要小哥哥！！！！
     position: (CENTER,LINE_1)
   pics:
+  - content: WHITE
   - content: PIC_TING_MAD
     position: (-0.1,0.05)
     size: (1,1)
   - content: PIC_SPEEK_P_LEFT
     position: (0,0.2)
     size: (1,1)
-
 - type: activity
   activity: Text
-  background: WHITE
   texts:
   - content: 听说探探上的哥哥很多，
     position: (CENTER,LINE_2)
   - content: 下载一个试试吧～
     position: (CENTER,LINE_1)
   pics:
+  - content: WHITE
   - content: PIC_TING_MAD
     position: (-0.1,0.05)
     size: (1,1)
@@ -72,6 +71,8 @@ gameloop:
     size: (1,1)
 - type: activity
   activity: Choice
+  # pics:
+  # - content: WHITE
   textCenterTitle: 玩把游戏吗？
   textCenter1: A 开始吧
   textCenter2: B 不太想玩
@@ -100,4 +101,6 @@ gameloop:
   activity: Text
   background: BROWN
   tag: catgame_over
-  textCenter2: 开开心心每一天
+  texts:
+  - content: 开开心心每一天
+    position: (CENTER,CENTER)
