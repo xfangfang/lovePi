@@ -18,7 +18,7 @@ class App():
         pygame.init()
         # pygame.display.set_caption('LovePi')
         pygame.mouse.set_visible(False)
-        self.surface = pygame.display.set_mode((WIDTH, HEIGHT))
+        self.surface = pygame.display.set_mode((WIDTH, HEIGHT), 0, 32)
         # self.surface.fill(WHITE)
         self.fpsClock = pygame.time.Clock()
         self.HEIGHT = HEIGHT
@@ -47,22 +47,6 @@ class App():
 
     def scaleToWidthPixel(self, scale):
         return int(scale * WIDTH * 1.0 / 16)
-
-    def text(self, text='', size=FONT_NORMAL, position=(0,0), color=BLACK):
-        font = pygame.font.Font(FONT_FILE_PATH, self.scaleToHeightPixel(size)).render(text, True, color)
-        rect = font.get_rect()
-        x = position[0]*1.0
-        y = position[1]*1.0
-        if x < 0:
-            # auto center
-            w = int((self.WIDTH-rect.right)/2)
-        else:
-            w = int(self.WIDTH*x)
-        if y < 0:
-            h = int((self.HEIGHT-rect.bottom)/2)
-        else:
-            h = int(self.HEIGHT*y)
-        self.surf.blit(font,(w,h))
 
     def update(self):
         if self.background != None:
@@ -105,8 +89,8 @@ class App():
 
     def updateAndRestart(self):
         os.system("git pull")
-        python = sys.executable
-        os.execl(python, python, * sys.argv)
+        # python = sys.executable
+        # os.execl(python, python, * sys.argv)
 
 def main():
     # main app

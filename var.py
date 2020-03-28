@@ -7,7 +7,7 @@ script,first = argv
 # var
 HEIGHT = 240
 WIDTH = 240
-FPS = 30
+FPS = 24
 
 
 # const
@@ -15,7 +15,7 @@ PI = 1
 PC = 2
 ENV = PC
 
-
+os.environ['SDL_NOMOUSE'] = '1'
 if first == 'PI':
     ENV = PI
     print('ENV: PI')
