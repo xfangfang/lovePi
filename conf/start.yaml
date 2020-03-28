@@ -1,8 +1,7 @@
 gameloop:
 - type: activity
-  activity: Text
+  activity: Start
   appBackground: BROWN
-  background: BACKGROUND_WM
   animateIn:
     animate: activityLinearMove
     start: (0,-1)
@@ -12,14 +11,6 @@ gameloop:
     animate: activityLinearMove
     start: (0,0)
     end: (0,1)
-  texts:
-  - content: LOVE IS YOU
-    position: (-1,0.15)
-    size: FONT_TITLE
-    color: WHITE
-  - content: A 开始游戏
-    position: (-1,0.5)
-    color: WHITE
 - type: activity
   background: BROWN
   activity: Text
@@ -33,49 +24,52 @@ gameloop:
     end: (0,-1)
   texts:
   - content: 第一章
-    position: (-1,0.15)
+    position: (CENTER,0.15)
     color: WHITE
     size: FONT_TITLE
   - content: 探探女孩
     color: WHITE
-    position: (-1,0.45)
+    position: (CENTER,0.45)
   pics:
   - content: PIC_TANTAN
-    position: (0.2,-1)
+    position: (0.2,CENTER)
     size: (0.1,0.1)
 - type: activity
   activity: Text
   appBackground: WHITE
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (-1,0)
+    end: (0,0)
   texts:
-  - content: 想见你
-    position: (-1,0.15)
-    size: FONT_TITLE
-  - content: 只想见你，未来过去
-    color: BLACK
-    position: (-1,0.8)
-  - content: 我只想见你
-    color: BLACK
-    position: (-1,0.9)
+  - content: 每天的生活好无聊啊！
+    position: (CENTER,LINE_2)
+  - content: 我想要小哥哥！！！！
+    position: (CENTER,LINE_1)
   pics:
-  - content: PIC_SPEEK_RIGHT
-    position: (0,0.5)
-    size: (1,0.7)
+  - content: PIC_TING_MAD
+    position: (-0.1,0.05)
+    size: (1,1)
+  - content: PIC_SPEEK_P_LEFT
+    position: (0,0.2)
+    size: (1,1)
+
 - type: activity
   activity: Text
-  appBackground: WHITE
+  background: WHITE
   texts:
-  - content: 想见你
-    position: (-1,0.15)
-    size: FONT_TITLE
-  - content: 只想见你
-    color: WHITE
-    position: (-1,0.45)
-  - content: 未来过去
-    color: WHITE
-    position: (-1,0.55)
-  - content: 我只想见你
-    color: WHITE
-    position: (-1,0.65)
+  - content: 听说探探上的哥哥很多，
+    position: (CENTER,LINE_2)
+  - content: 下载一个试试吧～
+    position: (CENTER,LINE_1)
+  pics:
+  - content: PIC_TING_MAD
+    position: (-0.1,0.05)
+    size: (1,1)
+  - content: PIC_SPEEK_P_LEFT
+    position: (0,0.2)
+    size: (1,1)
 - type: activity
   activity: Choice
   textCenterTitle: 玩把游戏吗？

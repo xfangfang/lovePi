@@ -69,9 +69,14 @@ class App():
                 back = pygame.image.load(self.background).convert()
                 back = pygame.transform.scale(back,(self.WIDTH,self.HEIGHT))
                 self.surface.blit(back,(0,0))
+
         if self.currentActivity:
             self.currentActivity.update()
             self.surface.blit(self.currentActivity.surf, (self.currentActivity.x,self.currentActivity.y))
+
+        # for a in self.activityStack:
+        #     a.update()
+        #     self.surface.blit(a.surf, (a.x,a.y))
 
         self.key.update()
 
@@ -94,6 +99,11 @@ class App():
     def close(self):
         if self.currentActivity:
             self.activityStack.pop()
+
+    def updateAndRestart(self):
+        os.system("git pull")
+        python = sys.executable
+        os.execl(python, python, * sys.argv)
 
 def main():
     # main app

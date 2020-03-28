@@ -99,6 +99,21 @@ class MySprite(pygame.sprite.Sprite):
             self.image = self.master_image.subsurface(rect)
             self.old_frame = self.frame
 
+class Start(Activity):
+    def __init__(self, app):
+        Activity.__init__(self, app)
+        self.background = BACKGROUND_WM
+    def update(self):
+        super().update()
+        self.text(text='LOVE IS YOU', size=FONT_TITLE, position=(CENTER,0.15))
+        self.text(text='A 开始游戏', size=FONT_NORMAL, position=(CENTER,0.55))
+        self.text(text='B 检查更新', size=FONT_NORMAL, position=(CENTER,0.7))
+    def onKeyDown(self, key, e):
+        if super().onKeyDown(key, e): return
+        if e == key.btn_key1:
+            self.close()
+        elif e == key.btn_key2:
+            self.app.updateAndRestart()
 
 class Text(Activity):
     def __init__(self, app):
@@ -121,10 +136,10 @@ class Text(Activity):
                 content = eval(pic['content'])
                 self.picture(content, size, position)
 
-        if 'textCenterTitle' in state: self.text(text=state['textCenterTitle'], size=FONT_TITLE, position=(-1,0.15))
-        if 'textCenter1' in state: self.text(text=state['textCenter1'], size=FONT_NORMAL, position=(-1,0.45))
-        if 'textCenter2' in state: self.text(text=state['textCenter2'], size=FONT_NORMAL, position=(-1,0.55))
-        if 'textCenter3' in state: self.text(text=state['textCenter3'], size=FONT_NORMAL, position=(-1,0.65))
+        if 'textCenterTitle' in state: self.text(text=state['textCenterTitle'], size=FONT_TITLE, position=(CENTER,0.15))
+        if 'textCenter1' in state: self.text(text=state['textCenter1'], size=FONT_NORMAL, position=(CENTER,0.45))
+        if 'textCenter2' in state: self.text(text=state['textCenter2'], size=FONT_NORMAL, position=(CENTER,0.55))
+        if 'textCenter3' in state: self.text(text=state['textCenter3'], size=FONT_NORMAL, position=(CENTER,0.65))
         if 'texts' in state:
             for text in state['texts']:
                 color = BLACK

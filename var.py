@@ -33,6 +33,11 @@ BACKGROUND_WM = 'assets/background.png'
 PIC_TANTAN = 'assets/tantan.png'
 PIC_SPEEK_LEFT = 'assets/speek_left.png'
 PIC_SPEEK_RIGHT = 'assets/speek_right.png'
+PIC_SPEEK_P_RIGHT = 'assets/speek-p-r.png'
+PIC_SPEEK_B_RIGHT = 'assets/speek-b-r.png'
+PIC_SPEEK_P_LEFT = 'assets/speek-p-l.png'
+PIC_SPEEK_B_LEFT = 'assets/speek-b-l.png'
+PIC_TING_MAD = 'assets/ting-mad.png'
 
 BLACK = (  0,   0,   0)
 WHITE = (255, 255, 255)
@@ -59,3 +64,8 @@ ACTIVITY_CLOSE = 2
 
 FONT_NORMAL = 1.3
 FONT_TITLE = 2.4
+
+LINE_1 = 0.9
+LINE_2 = 0.8
+
+CENTER = 999

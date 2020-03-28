@@ -45,8 +45,8 @@ class Activity():
                     self.backgroundImage = pygame.transform.scale(self.backgroundImage,(self.WIDTH,self.HEIGHT))
                 self.surf.blit(self.backgroundImage,(0,0))
         else:
-            # self.surf = pygame.Surface((self.WIDTH, self.HEIGHT))
-            self.surf.fill(BROWN)
+            self.surf = pygame.Surface((self.WIDTH, self.HEIGHT))
+            # self.surf.fill(BROWN)
 
         if self.activity_state == ACTIVITY_START:
             if self._animateIn:
@@ -84,14 +84,15 @@ class Activity():
         return (w,h)
 
     def position(self, rect, position):
+
         x = position[0]*1.0
         y = position[1]*1.0
-        if x < 0:
+        if position[0] == CENTER:
             # auto center
             w = int((self.app.WIDTH-rect.right)/2)
         else:
             w = int(self.app.WIDTH*x)
-        if y < 0:
+        if position[1] == CENTER:
             h = int((self.app.HEIGHT-rect.bottom)/2)
         else:
             h = int(self.app.HEIGHT*y)
