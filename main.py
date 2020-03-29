@@ -33,11 +33,15 @@ class App():
         self.background = None
 
         # game state
-        self.gameloop = get_yaml_data(CONF_START)['gameloop']
-        self.buildTag()
-        self.gameState = 0
-
+        # self.switchConfig(CONF_START, 7)
+        self.switchConfig(CONF_TAN_FANG,0)
         self.stateChange()
+
+    def switchConfig(self, conf, state):
+        self.gameloop = get_yaml_data(conf)['gameloop']
+        self.buildTag()
+        self.gameState = state
+
 
     def buildTag(self):
         self.tagMap = {}
@@ -73,18 +77,19 @@ class App():
             self.openActivity(eval(state['activity']))
             self.gameState += 1
         elif state['type'] == 'goto':
-            if 'status' in self.activityData:
-                if self.activityData['status'] == eval(state['if']):
-                    if 'goto' in state:
-                        self.gameState = int(state['goto'])
-                    elif 'goto_tag' in state:
-                        self.gameState = self.tagMap[state['goto_tag']]
-                    elif 'step' in state:
-                        self.gameState += int(state['step'])
-                else:
-                    self.gameState += 1
+            if eval(state['if']) == True or ('status' in self.activityData and self.activityData['status'] == eval(state['if'])):
+                if 'conf' in state:
+                    conf = eval(state['conf'])
+                    state = int(state['state'])
+                    self.switchConfig(conf,state)
+                elif 'goto' in state:
+                    self.gameState = int(state['goto'])
+                elif 'goto_tag' in state:
+                    self.gameState = self.tagMap[state['goto_tag']]
+                elif 'step' in state:
+                    self.gameState += int(state['step'])
             else:
-                self.gameState -= 1
+                self.gameState += 1
             self.stateChange()
 
     def update(self):

@@ -1,6 +1,7 @@
 from activity.activity import Activity
 from activity.cat import CatGame
 from var import *
+from animate import *
 from utils import get_yaml_data
 import yaml
 import pygame
@@ -102,7 +103,6 @@ class Text(Activity):
 
     def update(self):
         super().update()
-        state = self.app.activityData['state']
         for i in self.pics:
             if len(i) == 2:
                 self.surf.blit(*i)
@@ -132,5 +132,76 @@ class Choice(Text):
             self.app.activityData['status'] = CHOICE_NO
             self.close()
 
-class TanTan(Activity):
-    pass
+class TanTan(Text):
+    def __init__(self, app):
+        Text.__init__(self, app)
+        self.state = TAN_START
+        self.men = [PIC_TAN_JING, PIC_TAN_XIAN, PIC_TAN_FANG, PIC_TAN_CHANG]
+        self.config = [CONF_TAN_JING, CONF_TAN_XIAN, CONF_TAN_FANG, CONF_TAN_CHANG]
+        self.selectNum = 0
+        self.state = TAN_START
+        self.start()
+
+    def start(self):
+        self.background = TANTAN_BACKGROUND
+        self.pics = [self.getPicture(PIC_TANTAN,(0.3,0.3),(CENTER,0.2))]
+        self.texts = [self.getText('左右滑动，揭晓缘分', FONT_NORMAL, (CENTER,LINE_2), WHITE)]
+
+    def seek(self):
+        self.background = TANTAN_BACKGROUND
+        self.app.background = TANTAN_BACKGROUND
+        man = self.men[self.selectNum]
+        self.pics = [self.getPicture(man,(1,1),(CENTER,CENTER))]
+        self.pics.append(self.getPicture(PIC_TANTAN,(0.1,0.1),(0.02,0.02)))
+        self.pics.append(self.getPicture(ICON_HEART,(0.15,0.15),(CENTER,0.7)))
+        self.pics.append(self.getPicture(ICON_ARROW_LEFT,(0.15,0.15),(0.05,CENTER)))
+        self.pics.append(self.getPicture(ICON_ARROW_RIGHT,(0.15,0.15),(0.8,CENTER)))
+        self.texts = [self.getText('A 心动', FONT_NORMAL, (CENTER,LINE_1), RED)]
+
+    def confirm(self):
+        pass
+
+    def onKeyDown(self, key, e):
+        if Activity.onKeyDown(self, key, e): return
+        if self.state == TAN_START:
+            if e == key.btn_left:
+                self.state = TAN_SEEK
+                self.seek()
+                self.activity_state = ANIMATE_START
+                self.setAnimateIn(animate=activityLinearMove, start=(1,0), end=(0,0))
+            elif e == key.btn_right:
+                self.state = TAN_SEEK
+                self.seek()
+                self.activity_state = ANIMATE_START
+                self.setAnimateIn(animate=activityLinearMove, start=(-1,0), end=(0,0))
+        elif self.state == TAN_SEEK:
+            if e == key.btn_key1:
+                self.state = TAN_CONFIRM
+                self.pics.append(self.getPicture(PIC_SPEEK_P_LEFT,(1,1),(0,0.2)))
+                self.texts = [self.getText('你确定选择他吗？', FONT_NORMAL, (CENTER,LINE_2), BLACK)]
+                self.texts.append(self.getText('A 确定    B 再看看', FONT_NORMAL, (CENTER,LINE_1), BLACK))
+            elif e == key.btn_left:
+                self.selectNum -= 1
+                self.selectNum = self.selectNum % len(self.men)
+                man = self.men[self.selectNum]
+                self.pics[0] = self.getPicture(man,(1,1),(CENTER,CENTER))
+                self.activity_state = ANIMATE_START
+                self.setAnimateIn(animate=activityLinearMove, start=(1,0), end=(0,0))
+            elif e == key.btn_right:
+                self.selectNum += 1
+                self.selectNum = self.selectNum % len(self.men)
+                man = self.men[self.selectNum]
+                self.pics[0] = self.getPicture(man,(1,1),(CENTER,CENTER))
+                self.activity_state = ANIMATE_START
+                self.setAnimateIn(animate=activityLinearMove, start=(-1,0), end=(0,0))
+
+        elif self.state == TAN_CONFIRM:
+            if e == key.btn_key1:
+                # choose game yaml
+                conf = self.config[self.selectNum]
+                self.app.switchConfig(conf, 0)
+                self.close()
+            elif e == key.btn_key2:
+                self.pics.pop()
+                self.seek()
+                self.state = TAN_SEEK

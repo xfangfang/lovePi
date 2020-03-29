@@ -1,0 +1,27 @@
+gameloop:
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (-1,0)
+    end: (0,0)
+  texts:
+  - content: 小哥哥你好呀
+    position: (CENTER,LINE_2)
+  - content: 你是...畅畅?
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TING_MAD
+    position: (-0.1,0.05)
+    size: (1,1)
+  - content: PIC_SPEEK_P_LEFT
+    position: (0,0.2)
+    size: (1,1)
+
+# rechoose man
+- type: goto
+  if: True
+  conf: CONF_START
+  state: 7

@@ -105,6 +105,11 @@ gameloop:
     size: (1,1)
 - type: activity
   activity: TanTan
+  background: TANTAN_BACKGROUND
+  animateIn:
+    animate: activityLinearMove
+    start: (0,1)
+    end: (0,0)
 
 - type: activity
   activity: CatGame

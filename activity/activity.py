@@ -52,7 +52,6 @@ class Activity():
         if self.background != None:
             if  isinstance(self.background,tuple):
                 self.surf.fill(self.background)
-                print('activity back')
             else:
                 if self.backgroundImage == None:
                     self.backgroundImage = pygame.image.load(self.background).convert()
@@ -63,6 +62,12 @@ class Activity():
             # self.surf.fill(BROWN)
     def close(self):
         self.activity_state = ACTIVITY_CLOSE
+
+    def setAnimateIn(self, animate, start, end, speed=0.3):
+        self._animateIn = animate
+        self._animateInStart = start
+        self._animateInEnd = end
+        self._animateInSpeed  = speed
 
 # key
     def onKeyDown(self, key, e):
@@ -85,7 +90,6 @@ class Activity():
         return (w,h)
 
     def position(self, rect, position):
-
         x = position[0]*1.0
         y = position[1]*1.0
         if position[0] == CENTER:
@@ -112,6 +116,7 @@ class Activity():
         position = self.position(rect,position)
         return font,position
 
+# api v2
     def picture(self, content, size, position):
         size = (int(size[0]*1.0*self.WIDTH),int(size[1]*1.0*self.HEIGHT))
         content = pygame.image.load(content).convert_alpha()
@@ -127,6 +132,7 @@ class Activity():
         self.surf.blit(font,position)
         return font,position
 
+# api v1
     def textCenterTitle(self, text, color=BLACK):
         font = pygame.font.Font(FONT_FILE_PATH, self.app.scaleToHeightPixel(2.4)).render(text, True, color)
         rect = font.get_rect()
