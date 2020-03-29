@@ -71,14 +71,41 @@ gameloop:
     size: (1,1)
 - type: activity
   activity: Choice
-  # pics:
-  # - content: WHITE
-  textCenterTitle: 玩把游戏吗？
-  textCenter1: A 开始吧
-  textCenter2: B 不太想玩
+  texts:
+  - content: A  立刻安装
+    position: (CENTER,LINE_2)
+  - content: B  还是算了
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TING_MAD
+    position: (-0.1,0.05)
+    size: (1,1)
+  - content: PIC_TANTAN
+    position: (0.6,CENTER)
+    size: (0.3,0.3)
+  - content: PIC_SPEEK_P_LEFT
+    position: (0,0.2)
+    size: (1,1)
 - type: goto
   if: CHOICE_NO
   goto_tag: catgame_over
+- type: activity
+  activity: Text
+  texts:
+  - content: 安装成功
+    position: (CENTER,LINE_2)
+  pics:
+  - content: WHITE
+  - content: PIC_TANTAN
+    position: (CENTER,0.2)
+    size: (0.3,0.3)
+  - content: PIC_SPEEK_P_LEFT
+    position: (0,0.2)
+    size: (1,1)
+- type: activity
+  activity: TanTan
+
 - type: activity
   activity: CatGame
 - type: goto

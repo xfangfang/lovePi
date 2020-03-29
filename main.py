@@ -6,9 +6,7 @@ import random
 from pygame.locals import *
 
 from keys import Key
-from activity.mainActivity import StartActivity
-from activity.mainActivity import Text
-from activity.mainActivity import Choice
+from activity.mainActivity import *
 from activity.cat import CatGame
 
 from utils import get_yaml_data

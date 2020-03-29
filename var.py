@@ -29,15 +29,21 @@ CONF_ACTIVITY = 'conf/activity.yaml'
 CONF_ANIMATE = 'conf/animate.yaml'
 FONT_FILE_PATH = 'assets/FZMiaoWuJW.TTF'
 
-BACKGROUND_WM = 'assets/background.png'
-PIC_TANTAN = 'assets/tantan.png'
-PIC_SPEEK_LEFT = 'assets/speek_left.png'
-PIC_SPEEK_RIGHT = 'assets/speek_right.png'
-PIC_SPEEK_P_RIGHT = 'assets/speek-p-r.png'
-PIC_SPEEK_B_RIGHT = 'assets/speek-b-r.png'
-PIC_SPEEK_P_LEFT = 'assets/speek-p-l.png'
-PIC_SPEEK_B_LEFT = 'assets/speek-b-l.png'
-PIC_TING_MAD = 'assets/ting-mad.png'
+# BACKGROUND_WM = 'assets/background-wm.png'
+# PIC_TANTAN = 'assets/tantan.png'
+# PIC_SPEEK_LEFT = 'assets/speek_left.png'
+# PIC_SPEEK_RIGHT = 'assets/speek_right.png'
+# PIC_SPEEK_P_RIGHT = 'assets/speek-p-r.png'
+# PIC_SPEEK_B_RIGHT = 'assets/speek-b-r.png'
+# PIC_SPEEK_P_LEFT = 'assets/speek-p-l.png'
+# PIC_SPEEK_B_LEFT = 'assets/speek-b-l.png'
+# PIC_TING_MAD = 'assets/ting-mad.png'
+# image
+assets = os.listdir('assets')
+for i in assets:
+    f = i.split('.')
+    if len(f) == 2 and f[1] == 'png':
+        locals()[f[0].upper().replace('-','_')] = 'assets/'+i
 
 BLACK = (  0,   0,   0)
 WHITE = (255, 255, 255)

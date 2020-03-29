@@ -99,16 +99,33 @@ class Activity():
             h = int(self.app.HEIGHT*y)
         return (w,h)
 
+    def getPicture(self, content, size, position):
+        size = (int(size[0]*1.0*self.WIDTH),int(size[1]*1.0*self.HEIGHT))
+        content = pygame.image.load(content).convert_alpha()
+        content = pygame.transform.scale(content,size)
+        position = self.position(content.get_rect(),position)
+        return content,position
+
+    def getText(self, text='', size=FONT_NORMAL, position=(0,0), color=BLACK):
+        font = pygame.font.Font(FONT_FILE_PATH, self.app.scaleToHeightPixel(size)).render(text, True, color)
+        rect = font.get_rect()
+        position = self.position(rect,position)
+        return font,position
+
     def picture(self, content, size, position):
         size = (int(size[0]*1.0*self.WIDTH),int(size[1]*1.0*self.HEIGHT))
         content = pygame.image.load(content).convert_alpha()
         content = pygame.transform.scale(content,size)
-        self.surf.blit(content,self.position(content.get_rect(),position))
+        position = self.position(content.get_rect(),position)
+        self.surf.blit(content,position)
+        return content,position
 
     def text(self, text='', size=FONT_NORMAL, position=(0,0), color=BLACK):
         font = pygame.font.Font(FONT_FILE_PATH, self.app.scaleToHeightPixel(size)).render(text, True, color)
         rect = font.get_rect()
-        self.surf.blit(font,self.position(rect,position))
+        position = self.position(rect,position)
+        self.surf.blit(font,position)
+        return font,position
 
     def textCenterTitle(self, text, color=BLACK):
         font = pygame.font.Font(FONT_FILE_PATH, self.app.scaleToHeightPixel(2.4)).render(text, True, color)

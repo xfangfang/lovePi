@@ -7,45 +7,6 @@ import pygame
 import math
 
 
-class MainActivity(Activity):
-    def __init__(self, app):
-        Activity.__init__(self, app)
-        self.gameloop = get_yaml_data(CONF_START)['gameloop']
-        self.buildTag()
-        self.gameState = 0
-    def buildTag(self):
-        self.tagMap = {}
-        for i, state in enumerate(self.gameloop):
-            if 'tag' in state:
-                self.tagMap[state['tag']] = i
-    def update(self):
-        if self.gameState >= len(self.gameloop):
-            self.gameState = 0
-        state = self.gameloop[self.gameState]
-        if 'appBackground' in state:
-            self.app.background = eval(state['appBackground'])
-        if state['type'] == 'activity':
-            self.app.activityData['state'] = state
-            self.app.openActivity(eval(state['activity']))
-            self.gameState += 1
-        elif state['type'] == 'goto':
-            if 'status' in self.app.activityData:
-                if self.app.activityData['status'] == eval(state['if']):
-                    if 'goto' in state:
-                        self.gameState = int(state['goto'])
-                    elif 'goto_tag' in state:
-                        self.gameState = self.tagMap[state['goto_tag']]
-                    elif 'step' in state:
-                        self.gameState += int(state['step'])
-                else:
-                    self.gameState += 1
-            else:
-                self.gameState -= 1
-
-    # def onKeyDown(self, key, e):
-    #     if e == key.btn_key1:
-    #         self.gameState += 1
-
 class MySprite(pygame.sprite.Sprite):
     def __init__(self, target):
         pygame.sprite.Sprite.__init__(self)
@@ -118,34 +79,39 @@ class Text(Activity):
         # self.group = pygame.sprite.Group()
         # self.group.add(self.cat)
         # self.cat.position = (100,100,100,100)
-        self.state = ACTIVITY_START
-
-    def update(self):
-        super().update()
+        self.pics = []
+        self.texts = []
         state = self.app.activityData['state']
-        # if 'background' in state: self.background =  eval(state['background'])
         if 'pics' in state:
             for pic in state['pics']:
                 content = eval(pic['content'])
                 if isinstance(content,tuple):
-                    self.surf.fill(content)
+                    self.pics.append(content)
                 else:
                     position = eval(pic['position'])
                     size = eval(pic['size'])
-                    self.picture(content, size, position)
-
-        if 'textCenterTitle' in state: self.text(text=state['textCenterTitle'], size=FONT_TITLE, position=(CENTER,0.15))
-        if 'textCenter1' in state: self.text(text=state['textCenter1'], size=FONT_NORMAL, position=(CENTER,0.45))
-        if 'textCenter2' in state: self.text(text=state['textCenter2'], size=FONT_NORMAL, position=(CENTER,0.55))
-        if 'textCenter3' in state: self.text(text=state['textCenter3'], size=FONT_NORMAL, position=(CENTER,0.65))
+                    self.pics.append(self.getPicture(content, size, position))
         if 'texts' in state:
             for text in state['texts']:
                 color = BLACK
                 size = FONT_NORMAL
                 if 'color' in text : color = eval(text['color'])
                 if 'size' in text : size = eval(text['size'])
-                self.text(text=text['content'], size=size, position=eval(text['position']), color=color)
-        # ticks = pygame.time.get_ticks()
+                t = self.getText(text=text['content'], size=size, position=eval(text['position']), color=color)
+                self.texts.append(t)
+
+    def update(self):
+        super().update()
+        state = self.app.activityData['state']
+        for i in self.pics:
+            if len(i) == 2:
+                self.surf.blit(*i)
+            else:
+                self.surf.fill(i)
+        for i in self.texts:
+            self.surf.blit(*i)
+
+        # # ticks = pygame.time.get_ticks()
         # self.group.update(ticks)
         # self.group.draw(self.surf)
 
@@ -165,3 +131,6 @@ class Choice(Text):
         elif e == key.btn_key2:
             self.app.activityData['status'] = CHOICE_NO
             self.close()
+
+class TanTan(Activity):
+    pass
