@@ -130,7 +130,6 @@ class StartActivity(Text):
     def showTipReboot(self):
         self.texts[2] = self.getText('检查到新版本 按任意键重启', FONT_NORMAL, (CENTER,LINE_2), BLACK)
 
-
     def onKeyDown(self, key, e):
         if Activity.onKeyDown(self, key, e): return
         if self.state == START:
@@ -152,6 +151,7 @@ class StartActivity(Text):
             self.start()
         elif self.state == SHOW_TIP_REBOOT:
             os.system('sudo reboot now')
+            print('reboot')
 
 
 class Choice(Text):
@@ -211,6 +211,7 @@ class TanTan(Text):
                 self.texts = [self.getText('你确定选择他吗？', FONT_NORMAL, (CENTER,LINE_2), BLACK)]
                 self.texts.append(self.getText('A 确定    B 再看看', FONT_NORMAL, (CENTER,LINE_1), BLACK))
             elif e == key.btn_left:
+                self.app.background = self.men[self.selectNum]
                 self.selectNum -= 1
                 self.selectNum = self.selectNum % len(self.men)
                 man = self.men[self.selectNum]
@@ -218,6 +219,7 @@ class TanTan(Text):
                 self.activity_state = ANIMATE_START
                 self.setAnimateIn(animate=activityLinearMove, start=(1,0), end=(0,0))
             elif e == key.btn_right:
+                self.app.background = self.men[self.selectNum]
                 self.selectNum += 1
                 self.selectNum = self.selectNum % len(self.men)
                 man = self.men[self.selectNum]
