@@ -112,40 +112,66 @@ class StartActivity(Text):
     def __init__(self, app):
         Activity.__init__(self, app)
         self.state = START
+        self.conf = None
         self.start()
 
     def start(self):
         self.pics = [self.getPicture(BACKGROUND_WM,(1,1),(0,0))]
-        self.texts = [self.getText(text='LOVE IS YOU', size=FONT_TITLE, position=(CENTER,0.15))]
-        self.texts.append(self.getText(text='A 开始游戏', size=FONT_NORMAL, position=(CENTER,0.55)))
-        self.texts.append(self.getText(text='B 检查更新', size=FONT_NORMAL, position=(CENTER,0.7)))
+        self.texts = [self.getText(text='LOVE is YOU', size=FONT_TITLE, position=(CENTER,0.15))]
+        if os.path.exists(USERLOG):
+            with open(USERLOG,'r') as f:
+                res = f.read().split(',')
+                if len(res) == 2:
+                    self.conf = res[0]
+                    self.gameState = int(res[1])
+                    self.texts.append(self.getText(text='A 新游戏', size=FONT_NORMAL, position=(CENTER,0.45)))
+                    self.texts.append(self.getText(text='B 继续游戏', size=FONT_NORMAL, position=(CENTER,0.55)))
+                    self.texts.append(self.getText(text='C 检查更新', size=FONT_NORMAL, position=(CENTER,0.65)))
+                    return
+        self.texts.append(self.getText(text='A 开始游戏', size=FONT_NORMAL, position=(CENTER,0.5)))
+        self.texts.append(self.getText(text='B 检查更新', size=FONT_NORMAL, position=(CENTER,0.6)))
 
     def showTip(self):
         self.pics.append(self.getPicture(PIC_SPEEK_P_LEFT,(1,1),(0,0.2)))
-        self.texts[2] = self.getText('按任意键开始检查更新', FONT_NORMAL, (CENTER,LINE_2), BLACK)
-
-    def showTipAlready(self):
-        self.texts[2] = self.getText('已经是最新的版本了', FONT_NORMAL, (CENTER,LINE_2), BLACK)
-
-    def showTipReboot(self):
-        self.texts[2] = self.getText('检查到新版本 按任意键重启', FONT_NORMAL, (CENTER,LINE_2), BLACK)
+        self.texts = [self.getText('按任意键开始检查更新', FONT_NORMAL, (CENTER,LINE_2), BLACK)]
 
     def onKeyDown(self, key, e):
         if Activity.onKeyDown(self, key, e): return
         if self.state == START:
+            if self.conf != None:
+                if e == key.btn_key2:
+                    self.app.switchConfig(self.conf, self.gameState)
+                    self.close()
+                elif e == key.btn_key1:
+                    self.state = SHOW_TIP_NEWGAME
+                    self.pics.append(self.getPicture(PIC_SPEEK_P_LEFT,(1,1),(0,0)))
+                    self.texts = [self.getText('开始新游戏', FONT_NORMAL, (CENTER,LINE_4), BLACK)]
+                    self.texts.append(self.getText('将清空之前的游戏记录', FONT_NORMAL, (CENTER,LINE_3), BLACK))
+                    self.texts.append(self.getText('A 新游戏   B 取消', FONT_NORMAL, (CENTER,LINE_1), BLACK))
+
+                elif e == key.btn_key3:
+                    self.state = SHOW_TIP_START
+                    self.showTip()
+            else:
+                if e == key.btn_key1:
+                    self.close()
+                elif e == key.btn_key2:
+                    self.state = SHOW_TIP_START
+                    self.showTip()
+        elif self.state == SHOW_TIP_NEWGAME:
             if e == key.btn_key1:
                 self.close()
             elif e == key.btn_key2:
-                self.state = SHOW_TIP_START
-                self.showTip()
+                self.state = START
+                self.start()
         elif self.state == SHOW_TIP_START:
             res = os.popen('git pull').readlines()
             if res[0] == 'Already up to date.\n':
                 self.state = SHOW_TIP_ALREADY_UPDATE
-                self.showTipAlready()
+                self.texts = [self.getText('已经是最新的版本了', FONT_NORMAL, (CENTER,LINE_2), BLACK)]
             else:
                 self.state = SHOW_TIP_REBOOT
-                self.showTipReboot()
+                self.texts = [self.getText('检查到新版本 按任意键重启', FONT_NORMAL, (CENTER,LINE_2), BLACK)]
         elif self.state == SHOW_TIP_ALREADY_UPDATE:
             self.state = START
             self.start()

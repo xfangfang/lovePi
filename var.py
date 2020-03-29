@@ -15,6 +15,8 @@ FONT_TITLE = 2.4
 
 LINE_1 = 0.9
 LINE_2 = 0.8
+LINE_3 = 0.7
+LINE_4 = 0.6
 
 CENTER = 999
 
@@ -46,6 +48,8 @@ CONF_TAN_CHANG = 'conf/chang.yaml'
 CONF_TAN_XIAN = 'conf/xian.yaml'
 CONF_TAN_JING = 'conf/jing.yaml'
 FONT_FILE_PATH = 'assets/FZMiaoWuJW.TTF'
+
+USERLOG = 'userlog'
 
 # image
 assets = os.listdir('assets')
@@ -80,6 +84,7 @@ START = 0
 SHOW_TIP_START = 1
 SHOW_TIP_ALREADY_UPDATE = 2
 SHOW_TIP_REBOOT = 3
+SHOW_TIP_NEWGAME = 4
 
 
 CHOICE_YES = 0

@@ -38,6 +38,7 @@ class App():
         self.stateChange()
 
     def switchConfig(self, conf, state):
+        self.conf = conf
         self.gameloop = get_yaml_data(conf)['gameloop']
         self.buildTag()
         self.gameState = state
@@ -91,6 +92,12 @@ class App():
             else:
                 self.gameState += 1
             self.stateChange()
+        # save stage
+        if self.conf == CONF_START and self.gameState == 1:
+            pass
+        else:
+            with open(USERLOG,'w') as f:
+                f.write('%s,%s'%(self.conf,self.gameState-1))
 
     def update(self):
         if self.background != None:
@@ -114,6 +121,10 @@ class App():
         self.key.update()
 
     def onKeyDown(self, key, e):
+        if e == key.btn_press:
+            self.switchConfig(CONF_START, 0)
+            self.close()
+            return
         if self.currentActivity:
             self.currentActivity.onKeyDown(key, e)
 
