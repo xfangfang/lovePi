@@ -12,14 +12,16 @@ class Key():
         self.btn_right = 26
         self.btn_key1 = 21
         self.btn_key2 = 20
-        self.btn_list = [self.btn_up, self.btn_down, self.btn_left, self.btn_right, self.btn_key1, self.btn_key2]
+        self.btn_key3 = 16
+        self.btn_press = 13
+        self.btn_list = [self.btn_up, self.btn_down, self.btn_left, self.btn_right, self.btn_key1, self.btn_key2, self.btn_key3, self.btn_press]
         self.env = ENV
         if ENV == PI:
             self.initGPIO()
         else:
             self.initKeyboard()
     def initKeyboard(self):
-        self.key_list = [pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, pygame.K_u, pygame.K_i]
+        self.key_list = [pygame.K_w, pygame.K_x, pygame.K_a, pygame.K_d, pygame.K_u, pygame.K_i, pygame.K_o, pygame.K_s, ]
         self.key_map = {}
         self.key_list_flag = {}
         for i in range(len(self.key_list)):
