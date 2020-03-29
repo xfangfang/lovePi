@@ -89,9 +89,10 @@ gameloop:
     size: (1,1)
 - type: goto
   if: CHOICE_NO
-  goto_tag: catgame_over
+  goto_tag: tantan_no
 - type: activity
   activity: Text
+  tag: install_tantan
   texts:
   - content: 安装成功
     position: (CENTER,LINE_2)
@@ -105,34 +106,30 @@ gameloop:
     size: (1,1)
 - type: activity
   activity: TanTan
+  tag: tantan
   background: TANTAN_BACKGROUND
   animateIn:
     animate: activityLinearMove
     start: (0,1)
     end: (0,0)
-
-- type: activity
-  activity: CatGame
-- type: goto
-  if: CATGAME_WIN
-  goto_tag: catgame_win
 - type: activity
   activity: Text
   background: WHITE
-  tag: catgame_lose
-  textCenter2: 你竟然输了
-- type: goto
-  if: CATGAME_LOSE
-  goto_tag: catgame_over
-- type: activity
-  activity: Text
-  background: WHITE
-  tag: catgame_win
-  textCenter2: 你赢得了比赛
-- type: activity
-  activity: Text
-  background: BROWN
-  tag: catgame_over
+  tag: tantan_no
   texts:
-  - content: 开开心心每一天
-    position: (CENTER,CENTER)
+  - content: 好女孩才不看探探
+    position: (CENTER,LINE_2)
+  - content: 和我有什么关系
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TING_MAD
+    position: (-0.1,0.05)
+    size: (1,1)
+  - content: PIC_SPEEK_P_LEFT
+    position: (0,0.2)
+    size: (1,1)
+
+- type: goto
+  if: True
+  goto_tag: install_tantan
