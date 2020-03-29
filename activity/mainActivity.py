@@ -179,10 +179,9 @@ class TanTan(Text):
         self.texts = [self.getText('左右滑动，揭晓缘分', FONT_NORMAL, (CENTER,LINE_2), WHITE)]
 
     def seek(self):
-        self.background = TANTAN_BACKGROUND
         self.app.background = TANTAN_BACKGROUND
         man = self.men[self.selectNum]
-        self.pics = [self.getPicture(man,(1,1),(CENTER,CENTER))]
+        self.pics = [TANTAN_BACKGROUND, self.getPicture(man,(1,1),(CENTER,CENTER))]
         self.pics.append(self.getPicture(PIC_TANTAN,(0.1,0.1),(0.02,0.02)))
         self.pics.append(self.getPicture(ICON_HEART,(0.15,0.15),(CENTER,0.7)))
         self.pics.append(self.getPicture(ICON_ARROW_LEFT,(0.15,0.15),(0.05,CENTER)))
@@ -222,7 +221,7 @@ class TanTan(Text):
                 self.selectNum += 1
                 self.selectNum = self.selectNum % len(self.men)
                 man = self.men[self.selectNum]
-                self.pics[0] = self.getPicture(man,(1,1),(CENTER,CENTER))
+                self.pics[1] = self.getPicture(man,(1,1),(CENTER,CENTER))
                 self.activity_state = ANIMATE_START
                 self.setAnimateIn(animate=activityLinearMove, start=(-1,0), end=(0,0))
 
