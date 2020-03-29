@@ -6,6 +6,7 @@ from utils import get_yaml_data
 import yaml
 import pygame
 import math
+import os
 
 
 class MySprite(pygame.sprite.Sprite):
@@ -56,21 +57,6 @@ class MySprite(pygame.sprite.Sprite):
             self.image = self.master_image.subsurface(rect)
             self.old_frame = self.frame
 
-class StartActivity(Activity):
-    def __init__(self, app):
-        Activity.__init__(self, app)
-        self.background = BACKGROUND_WM
-    def update(self):
-        super().update()
-        self.text(text='LOVE IS YOU', size=FONT_TITLE, position=(CENTER,0.15))
-        self.text(text='A 开始游戏', size=FONT_NORMAL, position=(CENTER,0.55))
-        # self.text(text='B 检查更新', size=FONT_NORMAL, position=(CENTER,0.7))
-    def onKeyDown(self, key, e):
-        if super().onKeyDown(key, e): return
-        if e == key.btn_key1:
-            self.close()
-        # elif e == key.btn_key2:
-            # self.app.updateAndRestart()
 
 class Text(Activity):
     def __init__(self, app):
@@ -122,9 +108,55 @@ class Text(Activity):
         if e == key.btn_key1:
             self.close()
 
+class StartActivity(Text):
+    def __init__(self, app):
+        Activity.__init__(self, app)
+        self.state = START
+        self.start()
+
+    def start(self):
+        self.pics = [self.getPicture(BACKGROUND_WM,(1,1),(0,0))]
+        self.texts = [self.getText(text='LOVE IS YOU', size=FONT_TITLE, position=(CENTER,0.15))]
+        self.texts.append(self.getText(text='A 开始游戏', size=FONT_NORMAL, position=(CENTER,0.55)))
+        self.texts.append(self.getText(text='B 检查更新', size=FONT_NORMAL, position=(CENTER,0.7)))
+
+    def showTip(self):
+        self.pics.append(self.getPicture(PIC_SPEEK_P_LEFT,(1,1),(0,0.2)))
+        self.texts[2] = self.getText('按任意键开始检查更新', FONT_NORMAL, (CENTER,LINE_2), BLACK)
+
+    def showTipAlready(self):
+        self.texts[2] = self.getText('已经是最新的版本了', FONT_NORMAL, (CENTER,LINE_2), BLACK)
+
+    def showTipReboot(self):
+        self.texts[2] = self.getText('检查到新版本 按任意键重启', FONT_NORMAL, (CENTER,LINE_2), BLACK)
+
+
+    def onKeyDown(self, key, e):
+        if Activity.onKeyDown(self, key, e): return
+        if self.state == START:
+            if e == key.btn_key1:
+                self.close()
+            elif e == key.btn_key2:
+                self.state = SHOW_TIP_START
+                self.showTip()
+        elif self.state == SHOW_TIP_START:
+            res = os.popen('git pull').readlines()
+            if res[0] == 'Already up to date.\n':
+                self.state = SHOW_TIP_ALREADY_UPDATE
+                self.showTipAlready()
+            else:
+                self.state = SHOW_TIP_REBOOT
+                self.showTipReboot()
+        elif self.state == SHOW_TIP_ALREADY_UPDATE:
+            self.state = START
+            self.start()
+        elif self.state == SHOW_TIP_REBOOT:
+            os.system('sudo reboot now')
+
+
 class Choice(Text):
     def onKeyDown(self, key, e):
-        Activity.onKeyDown(self, key, e)
+        if Activity.onKeyDown(self, key, e): return
         if e == key.btn_key1:
             self.app.activityData['status'] = CHOICE_YES
             self.close()
@@ -143,8 +175,7 @@ class TanTan(Text):
         self.start()
 
     def start(self):
-        self.background = TANTAN_BACKGROUND
-        self.pics = [self.getPicture(PIC_TANTAN,(0.3,0.3),(CENTER,0.2))]
+        self.pics = [TANTAN_BACKGROUND, self.getPicture(PIC_TANTAN,(0.3,0.3),(CENTER,0.2))]
         self.texts = [self.getText('左右滑动，揭晓缘分', FONT_NORMAL, (CENTER,LINE_2), WHITE)]
 
     def seek(self):
@@ -184,7 +215,7 @@ class TanTan(Text):
                 self.selectNum -= 1
                 self.selectNum = self.selectNum % len(self.men)
                 man = self.men[self.selectNum]
-                self.pics[0] = self.getPicture(man,(1,1),(CENTER,CENTER))
+                self.pics[1] = self.getPicture(man,(1,1),(CENTER,CENTER))
                 self.activity_state = ANIMATE_START
                 self.setAnimateIn(animate=activityLinearMove, start=(1,0), end=(0,0))
             elif e == key.btn_right:

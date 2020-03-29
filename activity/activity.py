@@ -11,8 +11,8 @@ class Activity():
         self.x = 0
         self.y = 0
         self.surf = pygame.Surface((app.WIDTH, app.HEIGHT))
-        self.background = None
-        self.backgroundImage = None
+        # self.background = None
+        # self.backgroundImage = None
         self.pics = []
 
         # animate
@@ -49,17 +49,17 @@ class Activity():
             else:
                 self.app.close()
 
-        if self.background != None:
-            if  isinstance(self.background,tuple):
-                self.surf.fill(self.background)
-            else:
-                if self.backgroundImage == None:
-                    self.backgroundImage = pygame.image.load(self.background).convert()
-                    self.backgroundImage = pygame.transform.scale(self.backgroundImage,(self.WIDTH,self.HEIGHT))
-                self.surf.blit(self.backgroundImage,(0,0))
-        else:
-            self.surf = pygame.Surface((self.WIDTH, self.HEIGHT))
-            # self.surf.fill(BROWN)
+        # if self.background != None:
+        #     if  isinstance(self.background,tuple):
+        #         self.surf.fill(self.background)
+        #     else:
+        #         if self.backgroundImage == None:
+        #             self.backgroundImage = pygame.image.load(self.background).convert()
+        #             self.backgroundImage = pygame.transform.scale(self.backgroundImage,(self.WIDTH,self.HEIGHT))
+        #         self.surf.blit(self.backgroundImage,(0,0))
+        # else:
+        #     self.surf = pygame.Surface((self.WIDTH, self.HEIGHT))
+        #     # self.surf.fill(BROWN)
     def close(self):
         self.activity_state = ACTIVITY_CLOSE
 

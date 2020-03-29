@@ -29,12 +29,12 @@ class App():
         self.key.setOnKeyDownListener(self.onKeyDown)
         self.key.setOnKeyContinueDownListener(self.onKeyContinueDown)
         self.activityStack = []
-        self.activityData = {}
+        self.activityData = {'status': None}
         self.background = None
 
         # game state
-        # self.switchConfig(CONF_START, 7)
-        self.switchConfig(CONF_TAN_FANG,0)
+        self.switchConfig(CONF_START, 0)
+        # self.switchConfig(CONF_TAN_FANG,0)
         self.stateChange()
 
     def switchConfig(self, conf, state):
@@ -77,7 +77,7 @@ class App():
             self.openActivity(eval(state['activity']))
             self.gameState += 1
         elif state['type'] == 'goto':
-            if eval(state['if']) == True or ('status' in self.activityData and self.activityData['status'] == eval(state['if'])):
+            if state['if'] == 'True' or ('status' in self.activityData and self.activityData['status'] == eval(state['if'])):
                 if 'conf' in state:
                     conf = eval(state['conf'])
                     state = int(state['state'])
@@ -133,11 +133,6 @@ class App():
         if self.currentActivity:
             self.activityStack.pop()
             self.stateChange()
-
-    def updateAndRestart(self):
-        os.system("git pull")
-        python = sys.executable
-        os.execl(python, python, * sys.argv)
 
 def main():
     # main app
