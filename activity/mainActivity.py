@@ -151,7 +151,6 @@ class StartActivity(Text):
             self.start()
         elif self.state == SHOW_TIP_REBOOT:
             os.system('sudo reboot now')
-            print('reboot')
 
 
 class Choice(Text):
