@@ -64,13 +64,13 @@ class StartActivity(Activity):
         super().update()
         self.text(text='LOVE IS YOU', size=FONT_TITLE, position=(CENTER,0.15))
         self.text(text='A 开始游戏', size=FONT_NORMAL, position=(CENTER,0.55))
-        self.text(text='B 检查更新', size=FONT_NORMAL, position=(CENTER,0.7))
+        # self.text(text='B 检查更新', size=FONT_NORMAL, position=(CENTER,0.7))
     def onKeyDown(self, key, e):
         if super().onKeyDown(key, e): return
         if e == key.btn_key1:
             self.close()
-        elif e == key.btn_key2:
-            self.app.updateAndRestart()
+        # elif e == key.btn_key2:
+            # self.app.updateAndRestart()
 
 class Text(Activity):
     def __init__(self, app):
