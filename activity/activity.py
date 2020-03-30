@@ -110,8 +110,8 @@ class Activity():
         position = self.position(content.get_rect(),position)
         return content,position
 
-    def getText(self, text='', size=FONT_NORMAL, position=(0,0), color=BLACK):
-        font = pygame.font.Font(FONT_FILE_PATH, self.app.scaleToHeightPixel(size)).render(text, True, color)
+    def getText(self, text='', size=FONT_NORMAL, position=(0,0), color=BLACK, background=None):
+        font = pygame.font.Font(FONT_FILE_PATH, self.app.scaleToHeightPixel(size)).render(text, True, color, background)
         rect = font.get_rect()
         position = self.position(rect,position)
         return font,position

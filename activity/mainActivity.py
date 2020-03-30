@@ -3,10 +3,13 @@ from activity.cat import CatGame
 from var import *
 from animate import *
 from utils import get_yaml_data
+import threading
 import yaml
 import pygame
 import math
 import os
+import datetime
+import random
 
 
 class MySprite(pygame.sprite.Sprite):
@@ -117,66 +120,121 @@ class StartActivity(Text):
 
     def start(self):
         self.pics = [self.getPicture(BACKGROUND_WM,(1,1),(0,0))]
-        self.texts = [self.getText(text='LOVE is YOU', size=FONT_TITLE, position=(CENTER,0.15))]
+        self.texts = [self.getText(text='LOVE is YOU', size=FONT_TITLE, position=(CENTER,0.15), color=WHITE)]
         if os.path.exists(USERLOG):
             with open(USERLOG,'r') as f:
                 res = f.read().split(',')
                 if len(res) == 2:
                     self.conf = res[0]
                     self.gameState = int(res[1])
-                    self.texts.append(self.getText(text='A 新游戏', size=FONT_NORMAL, position=(CENTER,0.45)))
-                    self.texts.append(self.getText(text='B 继续游戏', size=FONT_NORMAL, position=(CENTER,0.55)))
-                    self.texts.append(self.getText(text='C 检查更新', size=FONT_NORMAL, position=(CENTER,0.65)))
+                    self.texts.append(self.getText(text='A 继续游戏', size=FONT_NORMAL, position=(CENTER,0.45)))
+                    self.texts.append(self.getText(text='B 新游戏', size=FONT_NORMAL, position=(CENTER,0.55)))
+                    self.texts.append(self.getText(text='C 设置', size=FONT_NORMAL, position=(CENTER,0.65)))
                     return
         self.texts.append(self.getText(text='A 开始游戏', size=FONT_NORMAL, position=(CENTER,0.5)))
-        self.texts.append(self.getText(text='B 检查更新', size=FONT_NORMAL, position=(CENTER,0.6)))
+        self.texts.append(self.getText(text='B 设置', size=FONT_NORMAL, position=(CENTER,0.6)))
 
-    def showTip(self):
-        self.pics.append(self.getPicture(PIC_SPEEK_P_LEFT,(1,1),(0,0.2)))
-        self.texts = [self.getText('按任意键开始检查更新', FONT_NORMAL, (CENTER,LINE_2), BLACK)]
+    def setting(self):
+        self.pics = [self.getPicture(BACKGROUND_WM,(1,1),(0,0))]
+        self.texts = [self.getText(text='设置', size=FONT_TITLE, position=(CENTER,0.15), color=WHITE)]
+        self.texts.append(self.getText(text='A 图库', size=FONT_NORMAL, position=(CENTER,0.45)))
+        self.texts.append(self.getText(text='B 更新', size=FONT_NORMAL, position=(CENTER,0.55)))
+        self.texts.append(self.getText(text='C 关于', size=FONT_NORMAL, position=(CENTER,0.65)))
+
+    def image_thread(self):
+        if not self.stopThread:
+            self.app.background = self.images[self.imageNum]
+            self.imageNum += 1
+            self.imageNum %= len(self.images)
+            pic = self.images[self.imageNum]
+            self.pics = [BLACK,self.getPicture(pic,(1,1),(0,0))]
+            time = datetime.datetime.now().strftime('%H:%M:%S')
+            self.texts = [self.getText(time, size=FONT_NORMAL, position=(0,0),color=WHITE)]
+            self.activity_state = ANIMATE_START
+            self.setAnimateIn(animate=activityLinearMove, start=(-1,0), end=(0,0))
+            t = threading.Timer(5, self.image_thread)
+            t.start()
+
+    def time_thread(self):
+        if not self.stopThread:
+            if self.activity_state != ANIMATE_START:
+                time = datetime.datetime.now().strftime('%H:%M:%S')
+                self.texts = [self.getText(time, size=FONT_NORMAL, position=(0,0),color=WHITE)]
+            t = threading.Timer(1, self.time_thread)
+            t.start()
 
     def onKeyDown(self, key, e):
         if Activity.onKeyDown(self, key, e): return
         if self.state == START:
             if self.conf != None:
-                if e == key.btn_key2:
+                if e == key.btn_key1:
                     self.app.switchConfig(self.conf, self.gameState)
                     self.close()
-                elif e == key.btn_key1:
+                elif e == key.btn_key2:
                     self.state = SHOW_TIP_NEWGAME
                     self.pics.append(self.getPicture(PIC_SPEEK_P_LEFT,(1,1),(0,0)))
                     self.texts = [self.getText('开始新游戏', FONT_NORMAL, (CENTER,LINE_4), BLACK)]
                     self.texts.append(self.getText('将清空之前的游戏记录', FONT_NORMAL, (CENTER,LINE_3), BLACK))
                     self.texts.append(self.getText('A 新游戏   B 取消', FONT_NORMAL, (CENTER,LINE_1), BLACK))
-
                 elif e == key.btn_key3:
-                    self.state = SHOW_TIP_START
-                    self.showTip()
+                    self.state = SETTING
+                    self.setting()
             else:
                 if e == key.btn_key1:
                     self.close()
                 elif e == key.btn_key2:
-                    self.state = SHOW_TIP_START
-                    self.showTip()
+                    self.state = SETTING
+                    self.setting()
+        elif self.state == SETTING:
+            if e == key.btn_key1:
+                images = os.listdir(IMAGES_ROOT)
+                self.images = []
+                for i in images:
+                    self.images.append(IMAGES_ROOT+'/'+i)
+                random.shuffle(self.images)
+                self.imageNum = 0
+                self.stopThread = False
+                self.texts = []
+                self.image_thread()
+                self.time_thread()
+                self.state = IMAGES
+            elif e == key.btn_key2:
+                self.state = UPDATE
+                self.pics.append(self.getPicture(PIC_SPEEK_P_LEFT,(1,1),(0,0.2)))
+                self.texts = [self.getText('按任意键开始检查更新', FONT_NORMAL, (CENTER,LINE_2), BLACK)]
+            elif e == key.btn_key3:
+                self.pics = [WHITE]
+                self.texts = [self.getText('送给小陈', FONT_NORMAL, (CENTER,CENTER), BLACK)]
+                self.state = RETURN_SETTING
+
         elif self.state == SHOW_TIP_NEWGAME:
             if e == key.btn_key1:
                 self.close()
             elif e == key.btn_key2:
                 self.state = START
                 self.start()
-        elif self.state == SHOW_TIP_START:
-            res = os.popen('git pull').readlines()
-            if res[0] == 'Already up to date.\n':
-                self.state = SHOW_TIP_ALREADY_UPDATE
-                self.texts = [self.getText('已经是最新的版本了', FONT_NORMAL, (CENTER,LINE_2), BLACK)]
-            else:
-                self.state = SHOW_TIP_REBOOT
-                self.texts = [self.getText('检查到新版本 按任意键重启', FONT_NORMAL, (CENTER,LINE_2), BLACK)]
-        elif self.state == SHOW_TIP_ALREADY_UPDATE:
-            self.state = START
-            self.start()
+        elif self.state == UPDATE:
+            try:
+                res = os.popen('git pull').readlines()
+                if res[0] == 'Already up to date.\n':
+                    self.state = RETURN_SETTING
+                    self.texts = [self.getText('已经是最新的版本了', FONT_NORMAL, (CENTER,LINE_2), BLACK)]
+                else:
+                    self.state = SHOW_TIP_REBOOT
+                    self.texts = [self.getText('检查到新版本 按任意键重启', FONT_NORMAL, (CENTER,LINE_2), BLACK)]
+            except Exception as e:
+                self.state = RETURN_SETTING
+                self.pics = [self.getPicture(PIC_QRCODE,(1,1),(0,0))]
+                self.texts = []
+        elif self.state == RETURN_SETTING:
+            self.state = SETTING
+            self.setting()
         elif self.state == SHOW_TIP_REBOOT:
             os.system('sudo reboot now')
+        elif self.state == IMAGES:
+            self.stopThread = True
+            self.state = SETTING
+            self.setting()
 
 
 class Choice(Text):
