@@ -122,8 +122,12 @@ class App():
 
     def onKeyDown(self, key, e):
         if e == key.btn_press:
-            self.switchConfig(CONF_START, 0)
-            self.close()
+            if self.conf == CONF_START and self.gameState == 1:
+                pass
+            else:
+                self.switchConfig(CONF_START, 0)
+                if self.currentActivity:
+                    self.currentActivity.close()
             return
         if self.currentActivity:
             self.currentActivity.onKeyDown(key, e)

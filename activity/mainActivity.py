@@ -149,7 +149,7 @@ class StartActivity(Text):
             pic = self.images[self.imageNum]
             self.pics = [BLACK,self.getPicture(pic,(1,1),(0,0))]
             time = datetime.datetime.now().strftime('%H:%M:%S')
-            self.texts = [self.getText(time, size=FONT_NORMAL, position=(0,0),color=WHITE)]
+            self.texts = [self.getText(time, size=FONT_TITLE, position=(CENTER,0),color=WHITE)]
             self.activity_state = ANIMATE_START
             self.setAnimateIn(animate=activityLinearMove, start=(-1,0), end=(0,0))
             t = threading.Timer(5, self.image_thread)
@@ -159,9 +159,13 @@ class StartActivity(Text):
         if not self.stopThread:
             if self.activity_state != ANIMATE_START:
                 time = datetime.datetime.now().strftime('%H:%M:%S')
-                self.texts = [self.getText(time, size=FONT_NORMAL, position=(0,0),color=WHITE)]
+                self.texts = [self.getText(time, size=FONT_TITLE, position=(CENTER,0),color=WHITE)]
             t = threading.Timer(1, self.time_thread)
             t.start()
+
+    def close(self):
+        Activity.close(self)
+        self.stopThread = True
 
     def onKeyDown(self, key, e):
         if Activity.onKeyDown(self, key, e): return
