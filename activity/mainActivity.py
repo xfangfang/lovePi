@@ -118,6 +118,11 @@ class StartActivity(Text):
         self.conf = None
         self.start()
 
+        self.stopShow = True
+        self.stopThread = False
+        self.image_thread()
+        self.time_thread()
+
     def start(self):
         self.pics = [self.getPicture(BACKGROUND_WM,(1,1),(0,0))]
         self.texts = [self.getText(text='LOVE is YOU', size=FONT_TITLE, position=(CENTER,0.15), color=WHITE)]
@@ -140,28 +145,27 @@ class StartActivity(Text):
         self.texts.append(self.getText(text='A 回忆时钟', size=FONT_NORMAL, position=(CENTER,0.45)))
         self.texts.append(self.getText(text='B 软件更新', size=FONT_NORMAL, position=(CENTER,0.55)))
         self.texts.append(self.getText(text='C 　关于　', size=FONT_NORMAL, position=(CENTER,0.65)))
-        self.texts.append(self.getText(text='按下"方向键"返回', size=FONT_SMALL, position=(0,0), color=GREY))
+        self.texts.append(self.getText(text='按下"方向键"返回主页', size=FONT_SMALL, position=(0,0), color=GREY))
 
 
     def image_thread(self):
-        if not self.stopThread:
+        if not self.stopShow:
             self.app.background = self.images[self.imageNum]
             self.imageNum += 1
             self.imageNum %= len(self.images)
             pic = self.images[self.imageNum]
             self.pics = [BLACK,self.getPicture(pic,(1,1),(0,0))]
-            time = datetime.datetime.now().strftime('%H:%M:%S')
-            self.texts = [self.getText(time, size=FONT_LARGE, position=(0.05,CENTER),color=WHITE)]
-            # self.activity_state = ANIMATE_START
-            # self.setAnimateIn(animate=activityLinearMove, start=(-1,0), end=(0,0))
+            self.texts = [self.getText(self.time, size=FONT_LARGE, position=(0.05,CENTER),color=WHITE)]
+        if not self.stopThread:
             t = threading.Timer(5, self.image_thread)
             t.start()
 
     def time_thread(self):
-        if not self.stopThread:
+        if not self.stopShow:
             if self.activity_state != ANIMATE_START:
-                time = datetime.datetime.now().strftime('%H:%M:%S')
-                self.texts = [self.getText(time, size=FONT_LARGE, position=(0.05,CENTER),color=WHITE)]
+                self.time = datetime.datetime.now().strftime('%H:%M:%S')
+                self.texts = [self.getText(self.time, size=FONT_LARGE, position=(0.05,CENTER),color=WHITE)]
+        if not self.stopThread:
             t = threading.Timer(1, self.time_thread)
             t.start()
 
@@ -206,10 +210,10 @@ class StartActivity(Text):
                     self.images.append(IMAGES_ROOT+'/'+i)
                 random.shuffle(self.images)
                 self.imageNum = 0
-                self.stopThread = False
-                self.texts = []
-                self.image_thread()
-                self.time_thread()
+                self.stopShow = False
+                self.time = datetime.datetime.now().strftime('%H:%M:%S')
+                self.texts = [self.getText(self.time, size=FONT_LARGE, position=(0.05,CENTER),color=WHITE)]
+                self.pics = [BLACK,self.getPicture(self.images[0],(1,1),(0,0))]
                 self.state = IMAGES
             elif e == key.btn_key2:
                 self.state = UPDATE
@@ -251,7 +255,7 @@ class StartActivity(Text):
         elif self.state == SHOW_TIP_REBOOT:
             os.system('sudo reboot now')
         elif self.state == IMAGES:
-            self.stopThread = True
+            self.stopShow= True
             self.app.background = BROWN
             self.state = SETTING
             self.setting()
