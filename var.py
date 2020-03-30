@@ -18,6 +18,8 @@ LINE_1 = 0.9
 LINE_2 = 0.8
 LINE_3 = 0.7
 LINE_4 = 0.6
+LINE_5 = 0.5
+LINE_6 = 0.4
 
 CENTER = 999
 
