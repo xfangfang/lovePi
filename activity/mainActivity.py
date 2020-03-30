@@ -140,6 +140,8 @@ class StartActivity(Text):
         self.texts.append(self.getText(text='A 图库', size=FONT_NORMAL, position=(CENTER,0.45)))
         self.texts.append(self.getText(text='B 更新', size=FONT_NORMAL, position=(CENTER,0.55)))
         self.texts.append(self.getText(text='C 关于', size=FONT_NORMAL, position=(CENTER,0.65)))
+        self.texts.append(self.getText(text='按下"方向键"返回', size=FONT_SMALL, position=(0,0), color=GREY))
+
 
     def image_thread(self):
         if not self.stopThread:
@@ -170,6 +172,7 @@ class StartActivity(Text):
     def onKeyDown(self, key, e):
         if Activity.onKeyDown(self, key, e): return
         if self.state == START:
+            self.app.background = (138, 163, 161)
             if self.conf != None:
                 if e == key.btn_key1:
                     self.app.switchConfig(self.conf, self.gameState)
@@ -183,12 +186,18 @@ class StartActivity(Text):
                 elif e == key.btn_key3:
                     self.state = SETTING
                     self.setting()
+                    self.activity_state = ANIMATE_START
+                    self.app.background = self.surf.copy()
+                    self.setAnimateIn(animate=activityLinearMove, start=(1,0), end=(0,0))
             else:
                 if e == key.btn_key1:
                     self.close()
                 elif e == key.btn_key2:
                     self.state = SETTING
                     self.setting()
+                    self.activity_state = ANIMATE_START
+                    self.app.background = self.surf.copy()
+                    self.setAnimateIn(animate=activityLinearMove, start=(1,0), end=(0,0))
         elif self.state == SETTING:
             if e == key.btn_key1:
                 images = os.listdir(IMAGES_ROOT)
@@ -210,6 +219,12 @@ class StartActivity(Text):
                 self.pics = [WHITE]
                 self.texts = [self.getText('送给小陈', FONT_NORMAL, (CENTER,CENTER), BLACK)]
                 self.state = RETURN_SETTING
+            elif e == key.btn_press:
+                self.state = START
+                self.start()
+                self.activity_state = ANIMATE_START
+                self.app.background = self.surf.copy()
+                self.setAnimateIn(animate=activityLinearMove, start=(-1,0), end=(0,0))
 
         elif self.state == SHOW_TIP_NEWGAME:
             if e == key.btn_key1:
@@ -237,6 +252,7 @@ class StartActivity(Text):
             os.system('sudo reboot now')
         elif self.state == IMAGES:
             self.stopThread = True
+            self.app.background = BROWN
             self.state = SETTING
             self.setting()
 

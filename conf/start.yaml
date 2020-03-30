@@ -13,6 +13,7 @@ gameloop:
     end: (0,1)
 - type: activity
   activity: Text
+  background: BROWN
   animateIn:
     animate: activityLinearMove
     start: (0,1)

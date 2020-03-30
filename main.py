@@ -103,10 +103,12 @@ class App():
         if self.background != None:
             if isinstance(self.background,tuple):
                 self.surface.fill(self.background)
-            else:
+            elif isinstance(self.background,str):
                 back = pygame.image.load(self.background).convert()
                 back = pygame.transform.scale(back,(self.WIDTH,self.HEIGHT))
                 self.surface.blit(back,(0,0))
+            else:
+                self.surface.blit(self.background,(0,0))
         # single activity active
         if self.currentActivity:
             current = self.currentActivity
@@ -128,7 +130,7 @@ class App():
                 self.switchConfig(CONF_START, 0)
                 if self.currentActivity:
                     self.currentActivity.close()
-            return
+                return
         if self.currentActivity:
             self.currentActivity.onKeyDown(key, e)
 
