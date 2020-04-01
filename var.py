@@ -47,6 +47,8 @@ else:
 # config and font
 CONF_START = 'conf/start.yaml'
 CONF_TAN_FANG = 'conf/fang.yaml'
+CONF_TAN_FANG_BOYFRIEND = 'conf/fang-boyfriend.yaml'
+CONF_TAN_FANG_APRIL = 'conf/fang-april.yaml'
 CONF_TAN_CHANG = 'conf/chang.yaml'
 CONF_TAN_XIAN = 'conf/xian.yaml'
 CONF_TAN_JING = 'conf/jing.yaml'

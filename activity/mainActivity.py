@@ -60,7 +60,6 @@ class MySprite(pygame.sprite.Sprite):
             self.image = self.master_image.subsurface(rect)
             self.old_frame = self.frame
 
-
 class Text(Activity):
     def __init__(self, app):
         Activity.__init__(self, app)
@@ -103,8 +102,6 @@ class Text(Activity):
         # # ticks = pygame.time.get_ticks()
         # self.group.update(ticks)
         # self.group.draw(self.surf)
-
-
 
     def onKeyDown(self, key, e):
         if super().onKeyDown(key, e): return
@@ -155,7 +152,6 @@ class StartActivity(Text):
             self.imageNum %= len(self.images)
             pic = self.images[self.imageNum]
             self.pics = [BLACK,self.getPicture(pic,(1,1),(0,0))]
-            self.texts = [self.getText(self.time, size=FONT_LARGE, position=(0.05,CENTER),color=WHITE)]
         if not self.stopThread:
             t = threading.Timer(5, self.image_thread)
             t.start()
@@ -259,7 +255,6 @@ class StartActivity(Text):
             self.app.background = BROWN
             self.state = SETTING
             self.setting()
-
 
 class Choice(Text):
     def onKeyDown(self, key, e):

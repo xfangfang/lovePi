@@ -19,6 +19,85 @@ gameloop:
   - content: PIC_SPEEK_P_LEFT
     position: (0,0.2)
     size: (1,1)
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (1,0)
+    end: (0,0)
+  texts:
+  - content: 不好意思哈
+    position: (CENTER,LINE_2)
+  - content: 我当时手滑了
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TALK_XIAN
+    position: (0.4,0)
+    size: (1,1)
+  - content: PIC_SPEEK_B_RIGHT
+    position: (0,0.2)
+    size: (1,1)
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (-1,0)
+    end: (0,0)
+  texts:
+  - content: 啊啊啊啊啊啊啊啊
+    position: (CENTER,LINE_2)
+  - content: 没关系的
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TING_MAD
+    position: (-0.1,0.05)
+    size: (1,1)
+  - content: PIC_SPEEK_P_LEFT
+    position: (0,0.2)
+    size: (1,1)
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 相遇就是缘分
+    position: (CENTER,LINE_2)
+  pics:
+  - content: WHITE
+  - content: PIC_TING_MAD
+    position: (-0.1,0.05)
+    size: (1,1)
+  - content: PIC_SPEEK_P_LEFT
+    position: (0,0.2)
+    size: (1,1)
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 相遇就是缘分
+    position: (CENTER,LINE_2)
+  - content: 我感觉咱们...
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TING_MAD
+    position: (-0.1,0.05)
+    size: (1,1)
+  - content: PIC_SPEEK_P_LEFT
+    position: (0,0.2)
+    size: (1,1)
+- type: activity
+  activity: Text
+  background: TANTAN_BACKGROUND
+  texts:
+  - content: 对方取消了匹配
+    position: (CENTER,CENTER)
+    color: WHITE
+  pics:
+  - content: TANTAN_BACKGROUND
 
 # rechoose man
 - type: goto

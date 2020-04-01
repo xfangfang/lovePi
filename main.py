@@ -42,6 +42,7 @@ class App():
         self.gameloop = get_yaml_data(conf)['gameloop']
         self.buildTag()
         self.gameState = state
+        # self.gameState = len(self.gameloop)-2
 
 
     def buildTag(self):
