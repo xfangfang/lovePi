@@ -216,7 +216,7 @@ class StartActivity(Text):
                 self.pics.append(self.getPicture(PIC_SPEEK_P_LEFT,(1,1),(0,0.2)))
                 self.texts = [self.getText('按任意键开始检查更新', FONT_NORMAL, (CENTER,LINE_2), BLACK)]
             elif e == key.btn_key3:
-                self.pics = [WHITE]
+                self.pics = [(249, 231, 238)]
                 self.texts = [self.getText('送给小陈', FONT_NORMAL, (CENTER,CENTER), BLACK)]
                 self.state = RETURN_SETTING
             elif e == key.btn_press:
