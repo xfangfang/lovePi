@@ -4,13 +4,31 @@ gameloop:
   background: WHITE
   animateIn:
     animate: activityLinearMove
+    start: (1,0)
+    end: (0,0)
+  texts:
+  - content: 小改改你好～
+    position: (CENTER,LINE_2)
+  - content: 处CP吗？
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TALK_JING
+    position: (0.1,0.05)
+    size: (1,1)
+  - content: PIC_SPEEK_B_RIGHT
+    position: (0,0.2)
+    size: (1,1)
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
     start: (-1,0)
     end: (0,0)
   texts:
-  - content: 小哥哥你好呀
+  - content: 不处谢谢
     position: (CENTER,LINE_2)
-  - content: 你是？精神小伙吗？
-    position: (CENTER,LINE_1)
   pics:
   - content: WHITE
   - content: PIC_TING_MAD
@@ -19,6 +37,15 @@ gameloop:
   - content: PIC_SPEEK_P_LEFT
     position: (0,0.2)
     size: (1,1)
+- type: activity
+  activity: Text
+  background: TANTAN_BACKGROUND
+  texts:
+  - content: 对方取消了匹配
+    position: (CENTER,CENTER)
+    color: WHITE
+  pics:
+  - content: TANTAN_BACKGROUND
 
 # rechoose man
 - type: goto

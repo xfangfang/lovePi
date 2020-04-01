@@ -7,9 +7,57 @@ gameloop:
     start: (-1,0)
     end: (0,0)
   texts:
-  - content: 小哥哥你好呀
+  - content: 啊 我的头好痛
     position: (CENTER,LINE_2)
-  - content: 你是...畅畅?
+  pics:
+  - content: WHITE
+  - content: PIC_SPEEK_P_LEFT
+    position: (0,0.2)
+    size: (1,1)
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 啊 我的头好痛
+    position: (CENTER,LINE_2)
+  - content: 怎么身上都是水
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_SPEEK_P_LEFT
+    position: (0,0.2)
+    size: (1,1)
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (1,0)
+    end: (0,0)
+  texts:
+  - content: 哈哈哈哈哈
+    position: (CENTER,LINE_2)
+  - content: 快来和我玩水呀
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TALK_CHANG
+    position: (0,0)
+    size: (1,1)
+  - content: PIC_SPEEK_B_RIGHT
+    position: (0,0.2)
+    size: (1,1)
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (-1,0)
+    end: (0,0)
+  texts:
+  - content: 这是？？？
+    position: (CENTER,LINE_2)
+  - content: 我穿越了？
     position: (CENTER,LINE_1)
   pics:
   - content: WHITE
@@ -19,7 +67,222 @@ gameloop:
   - content: PIC_SPEEK_P_LEFT
     position: (0,0.2)
     size: (1,1)
-
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 难道我穿越到了古代
+    position: (CENTER,LINE_2)
+  pics:
+  - content: WHITE
+  - content: PIC_TING_MAD
+    position: (-0.1,0.05)
+    size: (1,1)
+  - content: PIC_SPEEK_P_LEFT
+    position: (0,0.2)
+    size: (1,1)
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 难不成对面这位公子
+    position: (CENTER,LINE_2)
+  pics:
+  - content: WHITE
+  - content: PIC_TING_MAD
+    position: (-0.1,0.05)
+    size: (1,1)
+  - content: PIC_SPEEK_P_LEFT
+    position: (0,0.2)
+    size: (1,1)
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 就是我的白马王子
+    position: (CENTER,LINE_2)
+  pics:
+  - content: WHITE
+  - content: PIC_TING_MAD
+    position: (-0.1,0.05)
+    size: (1,1)
+  - content: PIC_SPEEK_P_LEFT
+    position: (0,0.2)
+    size: (1,1)
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (1,0)
+    end: (0,0)
+  texts:
+  - content: 叫你呢
+    position: (CENTER,LINE_2)
+  - content: 你怎么半天都不说话
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TALK_CHANG
+    position: (0,0)
+    size: (1,1)
+  - content: PIC_SPEEK_B_RIGHT
+    position: (0,0.2)
+    size: (1,1)
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (-1,0)
+    end: (0,0)
+  texts:
+  - content: (啊啊啊 我还在水里啊)
+    position: (CENTER,LINE_2)
+  - content: (妆不会花了吧)
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TING_MAD
+    position: (-0.1,0.05)
+    size: (1,1)
+  - content: PIC_SPEEK_P_LEFT
+    position: (0,0.2)
+    size: (1,1)
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 那待会...
+    position: (CENTER,LINE_2)
+  - content: 孤男寡女
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TING_MAD
+    position: (-0.1,0.05)
+    size: (1,1)
+  - content: PIC_SPEEK_P_LEFT
+    position: (0,0.2)
+    size: (1,1)
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 想象
+    position: (CENTER,CENTER)
+  pics:
+  - content: WHITE
+- type: activity
+  activity: Text
+  animateIn:
+    animate: activityLinearMove
+    start: (0,-1)
+    end: (0,0)
+  background: WHITE
+  pics:
+  - content: PIC_CHANG_FUTURE
+    position: (0,0)
+    size: (1,1)
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 现实
+    position: (CENTER,CENTER)
+  pics:
+  - content: WHITE
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (1,0)
+    end: (0,0)
+  texts:
+  - content: 快 拿个棍戳戳他
+    position: (CENTER,LINE_2)
+  - content: 看他能不能胀起肚子来
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TALK_CHANG
+    position: (0,0)
+    size: (1,1)
+  - content: PIC_SPEEK_B_RIGHT
+    position: (0,0.2)
+    size: (1,1)
+- type: activity
+  activity: Text
+  background: WHITE
+  pics:
+  - content: PIC_CHANG_NOW
+    position: (0,0)
+    size: (1,1)
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (1,0)
+    end: (0,0)
+  texts:
+  - content: 怎么只有嘴涨起来了
+    position: (CENTER,LINE_2)
+  - content: 丑东西太奇怪了
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TALK_CHANG
+    position: (0,0)
+    size: (1,1)
+  - content: PIC_SPEEK_B_RIGHT
+    position: (0,0.2)
+    size: (1,1)
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 就这样
+    position: (CENTER,LINE_6)
+  pics:
+  - content: WHITE
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 就这样
+    position: (CENTER,LINE_6)
+  - content: 这只孤独的癞蛤蟆精
+    position: (CENTER,LINE_5)
+  pics:
+  - content: WHITE
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 就这样
+    position: (CENTER,LINE_6)
+  - content: 这只孤独的癞蛤蟆精
+    position: (CENTER,LINE_5)
+  - content: 又顽强的活了一千来年
+    position: (CENTER,LINE_4)
+  pics:
+  - content: WHITE
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 就这样
+    position: (CENTER,LINE_6)
+  - content: 这只孤独的癞蛤蟆精
+    position: (CENTER,LINE_5)
+  - content: 又顽强的活了一千来年
+    position: (CENTER,LINE_4)
+  - content: 等待她的下一次恋爱
+    position: (CENTER,LINE_3)
+  pics:
+  - content: WHITE
 # rechoose man
 - type: goto
   if: True
