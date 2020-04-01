@@ -1,0 +1,55 @@
+gameloop:
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (-1,0)
+    end: (0,0)
+  texts:
+  - content: 在干嘛？
+    position: (CENTER,LINE_2)
+  - content: (应该会理我的吧)
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TING_MAD
+    position: POSITION_TALK_TING
+    size: SIZE_WINDOW
+  - content: PIC_SPEEK_P_LEFT
+    position: POSITION_SPEEK
+    size: SIZE_WINDOW
+
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 有时候爱情就是这样
+    position: (CENTER,CENTER)
+  pics:
+  - content: WHITE
+
+
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 哪怕你重拳出击
+    position: (CENTER,CENTER)
+  pics:
+  - content: WHITE
+
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 也只有听从天意
+    position: (CENTER,CENTER)
+  pics:
+  - content: WHITE
+
+
+- type: goto
+  if: True
+  conf: CONF_START
+  state: 7

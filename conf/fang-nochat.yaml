@@ -1,0 +1,6 @@
+gameloop:
+
+- type: goto
+  if: True
+  conf: CONF_START
+  state: 7

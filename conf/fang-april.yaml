@@ -1,4 +1,75 @@
 gameloop:
+
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 查找聊天记录
+    position: (0.1,0)
+  - content: 日  一  二  三  四  五  六
+    position: (0.05,0.1)
+  - content: 2024年3月
+    position: (0.1,0.2)
+    color: GREY
+  - content: 24  25   26   27  28   29  30
+    position: (0.05,0.3)
+    color: GREY
+  - content: 31
+    position: (0.05,0.4)
+  - content: 2024年4月
+    position: (0.1,0.5)
+    color: GREY
+  - content: 1
+    position: (0.2,0.6)
+    color: WHITE
+  - content: 今天
+    position: (0.17,0.7)
+    color: (135, 184, 83)
+    size: FONT_SMALL
+  pics:
+  - content: WHITE
+  - content: ICON_GREEN_CIRCLE
+    size: (0.1,0.1)
+    position: (0.17,0.6)
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 查找聊天记录
+    position: (0.1,0)
+  - content: 日  一  二  三  四  五  六
+    position: (0.05,0.1)
+  - content: 2024年3月
+    position: (0.1,0.2)
+    color: GREY
+  - content: 24  25   26   27  28   29  30
+    position: (0.05,0.3)
+    color: GREY
+  - content: 31
+    position: (0.05,0.4)
+  - content: 2024年4月
+    position: (0.1,0.5)
+    color: GREY
+  - content: 1
+    position: (0.2,0.6)
+    color: WHITE
+  - content: 今天
+    position: (0.17,0.7)
+    color: (135, 184, 83)
+    size: FONT_SMALL
+  - content: 今天是愚人节诶
+    position: (CENTER,LINE_2)
+  - content: 要不要找小方聊天呢？
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_SPEEK_P_LEFT
+    position: (0,0.25)
+    size: SIZE_WINDOW
+  - content: ICON_GREEN_CIRCLE
+    size: (0.1,0.1)
+    position: (0.17,0.6)
+
 - type: activity
   activity: Choice
   background: WHITE
@@ -25,9 +96,9 @@ gameloop:
     position: (0.17,0.7)
     color: (135, 184, 83)
     size: FONT_SMALL
-  - content: A 随便闲聊   B 不理他
+  - content: A 随便闲聊
     position: (CENTER,LINE_2)
-  - content: C 骗他我有男朋友了
+  - content: B 不理他
     position: (CENTER,LINE_1)
   pics:
   - content: WHITE
@@ -39,18 +110,9 @@ gameloop:
     position: (0.17,0.6)
 - type: goto
   if: CHOICE_A
-  goto_tag: april_chat
+  conf: CONF_TAN_FANG_CHAT
+  state: 0
 - type: goto
   if: CHOICE_B
-  goto_tag: april_not_chat
-- type: goto
-  if: CHOICE_C
-  goto_tag: april_boyfriend
-
-
-
-# rechoose man
-- type: goto
-  if: True
-  conf: CONF_START
-  state: 7
+  conf: CONF_TAN_FANG_NOCHAT
+  state: 0
