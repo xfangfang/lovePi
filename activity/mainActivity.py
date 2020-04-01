@@ -241,6 +241,7 @@ class StartActivity(Text):
                 else:
                     self.state = SHOW_TIP_REBOOT
                     self.texts = [self.getText('检查到新版本 按任意键重启', FONT_NORMAL, (CENTER,LINE_2), BLACK)]
+                    self.stopThread = True
             except Exception as e:
                 self.state = RETURN_SETTING
                 self.pics = [self.getPicture(PIC_QRCODE,(1,1),(0,0))]
