@@ -48,6 +48,15 @@ gameloop:
   pics:
   - content: WHITE
 
+- type: activity
+  activity: Text
+  background: TANTAN_BACKGROUND
+  texts:
+  - content: 开始你的下一次匹配吧
+    position: (CENTER,CENTER)
+    color: WHITE
+  pics:
+  - content: TANTAN_BACKGROUND
 
 - type: goto
   if: True
