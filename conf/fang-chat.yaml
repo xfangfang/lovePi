@@ -19,6 +19,106 @@ gameloop:
   - content: PIC_SPEEK_P_LEFT
     position: POSITION_SPEEK
     size: SIZE_WINDOW
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (1,0)
+    end: (0,0)
+  texts:
+  - content: 在玩游戏诶，你有听过
+    position: (CENTER,LINE_2)
+  - content: “上上下下”游戏嘛
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TALK_FANG
+    position: POSITION_TALK_FANG
+    size: SIZE_WINDOW
+  - content: PIC_SPEEK_B_RIGHT
+    position: POSITION_SPEEK
+    size: SIZE_WINDOW
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (-1,0)
+    end: (0,0)
+  texts:
+  - content: emmm 这个名字
+    position: (CENTER,LINE_2)
+  - content: (真的不是在开车吗)
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TING_MAD
+    position: POSITION_TALK_TING
+    size: SIZE_WINDOW
+  - content: PIC_SPEEK_P_LEFT
+    position: POSITION_SPEEK
+    size: SIZE_WINDOW
+
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (1,0)
+    end: (0,0)
+  texts:
+  - content: 来 分享给你
+    position: (CENTER,LINE_2)
+  pics:
+  - content: WHITE
+  - content: PIC_TALK_FANG
+    position: POSITION_TALK_FANG
+    size: SIZE_WINDOW
+  - content: PIC_SPEEK_B_RIGHT
+    position: POSITION_SPEEK
+    size: SIZE_WINDOW
+
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 你要是可以赢过我
+    position: (CENTER,LINE_2)
+  - content: 就再做我女朋友吧
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TALK_FANG
+    position: POSITION_TALK_FANG
+    size: SIZE_WINDOW
+  - content: PIC_SPEEK_B_RIGHT
+    position: POSITION_SPEEK
+    size: SIZE_WINDOW
+
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (-1,0)
+    end: (0,0)
+  texts:
+  - content: 手动白眼
+    position: (CENTER,LINE_2)
+  pics:
+  - content: WHITE
+  - content: PIC_TING_MAD
+    position: POSITION_TALK_TING
+    size: SIZE_WINDOW
+  - content: PIC_SPEEK_P_LEFT
+    position: POSITION_SPEEK
+    size: SIZE_WINDOW
+
+- type: activity
+  activity: CatGame
+
+
 
 - type: activity
   activity: Text
@@ -28,7 +128,6 @@ gameloop:
     position: (CENTER,CENTER)
   pics:
   - content: WHITE
-
 
 - type: activity
   activity: Text

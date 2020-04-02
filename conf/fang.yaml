@@ -1,6 +1,30 @@
 gameloop:
 - type: activity
   activity: Text
+  background: BROWN
+  animateIn:
+    animate: activityLinearMove
+    start: (0,1)
+    end: (0,0)
+  animateOut:
+    animate: activityLinearMove
+    start: (0,0)
+    end: (0,-1)
+  texts:
+  - content: 第二章
+    position: (CENTER,0.15)
+    color: WHITE
+    size: FONT_TITLE
+  - content: 真命天子
+    color: WHITE
+    position: (CENTER,0.45)
+  pics:
+  - content: BROWN
+  - content: ICON_HEART
+    position: (0.2,CENTER)
+    size: (0.1,0.1)
+- type: activity
+  activity: Text
   background: WHITE
   animateIn:
     animate: activityLinearMove

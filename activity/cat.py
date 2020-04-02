@@ -41,11 +41,11 @@ class CatGame(Activity):
         self.initBricks()
 
     def init(self):
-        self.surf.fill(WHITE)
-        self.textCenterTitle('加油！')
-        self.textCenter1('帮助你的男人打败他')
-        self.textCenter2('A 开始')
-        self.textCenter3('B 暂停')
+        self.surf.fill(BROWN)
+        self.text('加油',color=WHITE, size=FONT_TITLE,position=(CENTER,0.2))
+        self.text('打败这个男人就可以赢得他',color=WHITE,position=(CENTER,0.45))
+        self.text('A 开始',color=WHITE,position=(CENTER,0.6))
+        self.text('游戏中按 B 暂停',color=WHITE, position=(CENTER,LINE_1), size=FONT_SMALL)
 
     def pause(self):
         self.surf.fill(WHITE)
