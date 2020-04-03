@@ -51,6 +51,7 @@ CONF_TAN_FANG_BOYFRIEND = 'conf/fang-boyfriend.yaml'
 CONF_TAN_FANG_APRIL = 'conf/fang-april.yaml'
 CONF_TAN_FANG_CHAT = 'conf/fang-chat.yaml'
 CONF_TAN_FANG_NOCHAT = 'conf/fang-nochat.yaml'
+CONF_TAN_FANG_END = 'conf/fang-end.yaml'
 CONF_TAN_CHANG = 'conf/chang.yaml'
 CONF_TAN_XIAN = 'conf/xian.yaml'
 CONF_TAN_JING = 'conf/jing.yaml'
@@ -77,6 +78,7 @@ DARKTURQUOISE = (  3,  54,  73)
 BROWN = (169, 121,  80)
 TANTAN_BACKGROUND = (199, 86, 65)
 GREY = (128, 128, 128)
+PINK = (249, 231, 238)
 
 # activitys state
 CATGAME_INIT = 0

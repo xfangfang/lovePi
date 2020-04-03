@@ -41,11 +41,11 @@ class CatGame(Activity):
         self.initBricks()
 
     def init(self):
-        self.surf.fill(BROWN)
-        self.text('加油',color=WHITE, size=FONT_TITLE,position=(CENTER,0.2))
-        self.text('打败这个男人就可以赢得他',color=WHITE,position=(CENTER,0.45))
-        self.text('A 开始',color=WHITE,position=(CENTER,0.6))
-        self.text('游戏中按 B 暂停',color=WHITE, position=(CENTER,LINE_1), size=FONT_SMALL)
+        self.surf.fill(WHITE)
+        self.text('加油！',size=FONT_TITLE,position=(CENTER,0.2))
+        self.text('打败这个男人吧', position=(CENTER,0.45))
+        self.text('A 开始',position=(CENTER,0.6))
+        self.text('游戏中按 B 暂停', position=(CENTER,LINE_1), size=FONT_SMALL)
 
     def pause(self):
         self.surf.fill(WHITE)
@@ -143,6 +143,7 @@ class CatGame(Activity):
         self.ball_x_direction = random.choice([-1,1])
 
     def update(self):
+        super().update()
         if self.state == CATGAME_INIT:
             self.init()
         elif self.state == CATGAME_PAUSE:
@@ -169,11 +170,11 @@ class CatGame(Activity):
                 self.state = CATGAME_START
             elif e == key.btn_key2:
                 self.app.activityData['status'] = CATGAME_LOSE
-                self.app.close()
+                self.close()
         elif self.state == CATGAME_WIN:
             if e == key.btn_key1:
                 self.app.activityData['status'] = CATGAME_WIN
-                self.app.close()
+                self.close()
 
     def onKeyContinueDown(self, key, e):
         if self.state == CATGAME_START:

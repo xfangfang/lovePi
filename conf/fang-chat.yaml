@@ -118,11 +118,160 @@ gameloop:
 - type: activity
   activity: CatGame
 
+- type: goto
+  if: CATGAME_LOSE
+  goto_tag: gamelose
 
+# cat game win
 
 - type: activity
   activity: Text
   background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (1,0)
+    end: (0,0)
+  texts:
+  - content: 万万没想到
+    position: (CENTER,LINE_2)
+  - content: 我竟然输给了你
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TALK_FANG
+    position: POSITION_TALK_FANG
+    size: SIZE_WINDOW
+  - content: PIC_SPEEK_B_RIGHT
+    position: POSITION_SPEEK
+    size: SIZE_WINDOW
+
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 那么
+    position: (CENTER,LINE_2)
+  - content: 之前说过的...
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TALK_FANG
+    position: POSITION_TALK_FANG
+    size: SIZE_WINDOW
+  - content: PIC_SPEEK_B_RIGHT
+    position: POSITION_SPEEK
+    size: SIZE_WINDOW
+
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (-1,0)
+    end: (0,0)
+  texts:
+  - content: 啊....
+    position: (CENTER,LINE_2)
+  - content: 那...
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TING_MAD
+    position: POSITION_TALK_TING
+    size: SIZE_WINDOW
+  - content: PIC_SPEEK_P_LEFT
+    position: POSITION_SPEEK
+    size: SIZE_WINDOW
+
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (1,0)
+    end: (0,0)
+  texts:
+  - content: 哈哈哈
+    position: (CENTER,LINE_2)
+  - content: 愚人节快乐哦
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TALK_FANG
+    position: POSITION_TALK_FANG
+    size: SIZE_WINDOW
+  - content: PIC_SPEEK_B_RIGHT
+    position: POSITION_SPEEK
+    size: SIZE_WINDOW
+
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (-1,0)
+    end: (0,0)
+  texts:
+  - content: 你！！！！！
+    position: (CENTER,LINE_2)
+  pics:
+  - content: WHITE
+  - content: PIC_TING_MAD
+    position: POSITION_TALK_TING
+    size: SIZE_WINDOW
+  - content: PIC_SPEEK_P_LEFT
+    position: POSITION_SPEEK
+    size: SIZE_WINDOW
+
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (1,0)
+    end: (0,0)
+  texts:
+  - content: 骗你的啦
+    position: (CENTER,LINE_2)
+  pics:
+  - content: WHITE
+  - content: PIC_TALK_FANG
+    position: POSITION_TALK_FANG
+    size: SIZE_WINDOW
+  - content: PIC_SPEEK_B_RIGHT
+    position: POSITION_SPEEK
+    size: SIZE_WINDOW
+
+- type: activity
+  activity: Text
+  background: WHITE
+  texts:
+  - content: 这可不是咱们的大结局
+    position: (CENTER,LINE_2)
+  - content: 该有的样子
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TALK_FANG
+    position: POSITION_TALK_FANG
+    size: SIZE_WINDOW
+  - content: PIC_SPEEK_B_RIGHT
+    position: POSITION_SPEEK
+    size: SIZE_WINDOW
+
+- type: goto
+  if: True
+  conf: CONF_TAN_FANG_END
+  state: 0
+
+
+
+# cat game lose
+
+- type: activity
+  activity: Text
+  background: WHITE
+  tag: gamelose
   texts:
   - content: 有时候爱情就是这样
     position: (CENTER,CENTER)

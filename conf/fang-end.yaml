@@ -1,0 +1,239 @@
+gameloop:
+- type: activity
+  activity: Text
+  background: PINK
+  animateIn:
+    animate: activityLinearMove
+    start: (0,1)
+    end: (0,0)
+  animateOut:
+    animate: activityLinearMove
+    start: (0,0)
+    end: (0,-1)
+  texts:
+  - content: 终章
+    position: (CENTER,0.15)
+    color: BLACK
+    size: FONT_TITLE
+  - content: 大结局
+    color: BLACK
+    position: (CENTER,0.45)
+  pics:
+  - content: PINK
+  - content: ICON_HAPPY
+    position: (0.2,CENTER)
+    size: (0.1,0.1)
+
+- type: activity
+  activity: Text
+  background: WHITE
+  animateIn:
+    animate: activityLinearMove
+    start: (1,0)
+    end: (0,0)
+  texts:
+  - content: 终于来到了这个时候
+    position: (CENTER,LINE_2)
+  - content: 不知道我是你的第几个男人
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TALK_FANG
+    position: POSITION_TALK_FANG
+    size: SIZE_WINDOW
+  - content: PIC_SPEEK_B_RIGHT
+    position: POSITION_SPEEK
+    size: SIZE_WINDOW
+
+- type: activity
+  activity: Text
+  background: WHITE
+  animateOut:
+    animate: activityLinearMove
+    start: (0,0)
+    end: (-1,0)
+  texts:
+  - content: 咳咳 “开发者”给我换一个
+    position: (CENTER,LINE_2)
+  - content: 浪漫点的背景
+    position: (CENTER,LINE_1)
+  pics:
+  - content: WHITE
+  - content: PIC_TALK_FANG
+    position: POSITION_TALK_FANG
+    size: SIZE_WINDOW
+  - content: PIC_SPEEK_B_RIGHT
+    position: POSITION_SPEEK
+    size: SIZE_WINDOW
+
+
+- type: activity
+  activity: Text
+  background: PINK
+  texts:
+  - content: 这个还行
+    position: (CENTER,LINE_2)
+  pics:
+  - content: PINK
+  - content: PIC_TALK_FANG
+    position: POSITION_TALK_FANG
+    size: SIZE_WINDOW
+  - content: PIC_SPEEK_B_RIGHT
+    position: POSITION_SPEEK
+    size: SIZE_WINDOW
+
+- type: activity
+  activity: Text
+  background: PINK
+  texts:
+  - content: 我才你一定猜不到
+    position: (CENTER,LINE_2)
+  - content: 会收到什么样的礼物
+    position: (CENTER,LINE_1)
+  pics:
+  - content: PINK
+  - content: PIC_TALK_FANG
+    position: POSITION_TALK_FANG
+    size: SIZE_WINDOW
+  - content: PIC_SPEEK_B_RIGHT
+    position: POSITION_SPEEK
+    size: SIZE_WINDOW
+
+- type: activity
+  activity: Text
+  background: PINK
+  texts:
+  - content: 因为这是世界上
+    position: (CENTER,LINE_2)
+  - content: 独一无二的礼物哦
+    position: (CENTER,LINE_1)
+  pics:
+  - content: PINK
+  - content: PIC_TALK_FANG
+    position: POSITION_TALK_FANG
+    size: SIZE_WINDOW
+  - content: PIC_SPEEK_B_RIGHT
+    position: POSITION_SPEEK
+    size: SIZE_WINDOW
+
+
+- type: activity
+  activity: Text
+  background: PINK
+  texts:
+  - content: 匆匆忙忙准备了这个礼物
+    position: (CENTER,LINE_6)
+    color: BLACK
+  pics:
+  - content: PINK
+
+- type: activity
+  activity: Text
+  background: PINK
+  texts:
+  - content: 匆匆忙忙准备了这个礼物
+    position: (CENTER,LINE_6)
+  - content: 虽然和最开始的设想
+    position: (CENTER,LINE_5)
+  pics:
+  - content: PINK
+
+- type: activity
+  activity: Text
+  background: PINK
+  texts:
+  - content: 匆匆忙忙准备了这个礼物
+    position: (CENTER,LINE_6)
+  - content: 虽然和最开始的设想
+    position: (CENTER,LINE_5)
+  - content: 有些出入
+    position: (CENTER,LINE_4)
+  pics:
+  - content: PINK
+
+- type: activity
+  activity: Text
+  background: PINK
+  texts:
+  - content: 匆匆忙忙准备了这个礼物
+    position: (CENTER,LINE_6)
+  - content: 虽然和最开始的设想
+    position: (CENTER,LINE_5)
+  - content: 有些出入
+    position: (CENTER,LINE_4)
+  - content: 但总算顺利做到了
+    position: (CENTER,LINE_3)
+  pics:
+  - content: PINK
+
+- type: activity
+  activity: Text
+  background: PINK
+  texts:
+  - content: 最后我想说：
+    position: (CENTER,CENTER)
+  pics:
+  - content: PINK
+
+
+- type: activity
+  activity: Text
+  background: PINK
+  animateIn:
+    animate: activityLinearMove
+    start: (0,-1)
+    end: (0,0)
+  texts:
+  - content: 很高兴遇见你
+    position: (CENTER,CENTER)
+    color: BLACK
+  pics:
+  - content: PINK
+
+- type: activity
+  activity: Text
+  background: PINK
+  animateIn:
+    animate: activityLinearMove
+    start: (0,-1)
+    end: (0,0)
+  texts:
+  - content: 谢谢让我成长了许多
+    position: (CENTER,CENTER)
+    color: BLACK
+  pics:
+  - content: PINK
+
+- type: activity
+  activity: Text
+  background: PINK
+  animateIn:
+    animate: activityLinearMove
+    start: (0,-1)
+    end: (0,0)
+  texts:
+  - content: 希望未来都是你
+    position: (CENTER,CENTER)
+    color: BLACK
+  pics:
+  - content: PINK
+
+- type: activity
+  activity: Text
+  background: PINK
+  animateIn:
+    animate: activityLinearMove
+    start: (0,-1)
+    end: (0,0)
+  texts:
+  - content: 祝我们长命百岁
+    position: (CENTER,CENTER)
+    color: BLACK
+  pics:
+  - content: PINK
+
+
+- type: goto
+  if: True
+  conf: CONF_START
+  state: 0
