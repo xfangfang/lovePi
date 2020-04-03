@@ -70,10 +70,6 @@ gameloop:
 - type: activity
   activity: Text
   background: PINK
-  animateOut:
-    animate: activityLinearMove
-    start: (1,0)
-    end: (0,0)
   texts:
   - content: 这个还行
     position: (CENTER,LINE_2)
