@@ -159,6 +159,8 @@ goto组件支持通过判断游戏状态来进行跳转，
 # 参考链接
 
 [1.44inch_LCD_HAT](http://www.waveshare.net/wiki/1.44inch_LCD_HAT)
+
 [1.3inch_LCD_HAT](http://www.waveshare.net/wiki/1.3inch_LCD_HAT)
+
 [树莓派修改启动界面](https://www.cnblogs.com/Java-Script/p/11095826.html)
 
