@@ -17,7 +17,7 @@ pip3 install pyyaml pygame
 python3 main.py PC
 ```
 
-### 方式 2 rapiberry pi + LCD HAT
+### 方式 2 raspberry pi zero + LCD HAT
 
 材料：树莓派 zero（其实任何带有40pin GPIO的树莓派均可）、微雪1.3 inch LCD HAT（1.44 inch那个也可以，不过分辨率有些低还没有对应的外壳，不推荐）、PiSugar3D外壳及电池
 
