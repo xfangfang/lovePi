@@ -1,0 +1,13 @@
+[Unit]
+Description=Splashscreen
+DefaultDependencies=no
+After=local-fs.target
+
+[Service]
+#ExecStart=/usr/bin/python /home/pi/game.py
+ExecStart=/usr/bin/fbi  -d /dev/fb1 --noverbose -a /home/pi/lovePi/assets/background-wm.png
+StandardInput=tty
+StandardOutput=tty
+
+[Install]
+WantedBy=sysinit.target
