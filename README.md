@@ -83,7 +83,7 @@ a s d     |        |      i
 ```yaml
 gameloop:
 - type: activity
-	tag: start
+  tag: start
   activity: Text
   background: BROWN
   texts:
