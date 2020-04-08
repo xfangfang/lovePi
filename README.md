@@ -122,8 +122,8 @@ goto组件支持通过判断游戏状态来进行跳转，
 
  ```yaml
 - type: activity
-	activity: balabala
-	tag: before
+  activity: balabala
+  tag: before
 - type: goto
   if: CHOICE_NO
   goto_tag: before
