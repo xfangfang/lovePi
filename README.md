@@ -4,7 +4,7 @@ lovePi是一个使用pygame开发的恋爱养成游戏模版，支持使用者�
 
 
 
-![WechatIMG279](/Users/fang/Desktop/xfang/lovePi/assets/demo.jpeg)
+![WechatIMG279](assets/demo.jpeg)
 
 
 # How to run
