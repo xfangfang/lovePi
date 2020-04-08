@@ -189,5 +189,5 @@ gameloop:
 
 - type: goto
   if: True
-  conf: CONF_TAN_FANG_BOYFRIEND
+  conf: CONF_FANG_BOYFRIEND
   state: 0

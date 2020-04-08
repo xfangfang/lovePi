@@ -236,5 +236,5 @@ gameloop:
 # goto part2
 - type: goto
   if: True
-  conf: CONF_TAN_FANG_APRIL
+  conf: CONF_FANG_APRIL
   state: 0

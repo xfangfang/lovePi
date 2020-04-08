@@ -110,9 +110,9 @@ gameloop:
     position: (0.17,0.6)
 - type: goto
   if: CHOICE_A
-  conf: CONF_TAN_FANG_CHAT
+  conf: CONF_FANG_CHAT
   state: 0
 - type: goto
   if: CHOICE_B
-  conf: CONF_TAN_FANG_NOCHAT
+  conf: CONF_FANG_NOCHAT
   state: 0

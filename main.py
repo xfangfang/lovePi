@@ -34,7 +34,6 @@ class App():
 
         # game state
         self.switchConfig(CONF_START, 0)
-        # self.switchConfig(CONF_TAN_FANG,0)
         self.stateChange()
 
     def switchConfig(self, conf, state):
@@ -42,7 +41,6 @@ class App():
         self.gameloop = get_yaml_data(conf)['gameloop']
         self.buildTag()
         self.gameState = state
-        # self.gameState = len(self.gameloop)-2
 
 
     def buildTag(self):

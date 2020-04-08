@@ -44,17 +44,15 @@ if first == 'PI':
 else:
     print('ENV: PC')
 
-# config and font
-CONF_START = 'conf/start.yaml'
-CONF_TAN_FANG = 'conf/fang.yaml'
-CONF_TAN_FANG_BOYFRIEND = 'conf/fang-boyfriend.yaml'
-CONF_TAN_FANG_APRIL = 'conf/fang-april.yaml'
-CONF_TAN_FANG_CHAT = 'conf/fang-chat.yaml'
-CONF_TAN_FANG_NOCHAT = 'conf/fang-nochat.yaml'
-CONF_TAN_FANG_END = 'conf/fang-end.yaml'
-CONF_TAN_CHANG = 'conf/chang.yaml'
-CONF_TAN_XIAN = 'conf/xian.yaml'
-CONF_TAN_JING = 'conf/jing.yaml'
+# config
+
+confs = os.listdir('conf')
+for i in confs:
+    f = i.split('.')
+    if len(f) == 2 and f[1] == 'yaml':
+        locals()['CONF_'+f[0].upper().replace('-','_')] = 'conf/'+i
+
+# font
 FONT_FILE_PATH = 'assets/FZMiaoWuJW.TTF'
 
 USERLOG = 'userlog'
@@ -64,7 +62,7 @@ IMAGES_ROOT = 'assets/images'
 assets = os.listdir('assets')
 for i in assets:
     f = i.split('.')
-    if len(f) == 2 and f[1] == 'png':
+    if len(f) == 2 and ( f[1] == 'png' or f[1] == 'jpg' or f[1] == 'jpeg'):
         locals()[f[0].upper().replace('-','_')] = 'assets/'+i
 
 # color

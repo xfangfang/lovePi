@@ -272,7 +272,7 @@ class TanTan(Text):
         Text.__init__(self, app)
         self.state = TAN_START
         self.men = [PIC_TAN_JING, PIC_TAN_XIAN, PIC_TAN_FANG, PIC_TAN_CHANG]
-        self.config = [CONF_TAN_JING, CONF_TAN_XIAN, CONF_TAN_FANG, CONF_TAN_CHANG]
+        self.config = [CONF_JING, CONF_XIAN, CONF_FANG, CONF_CHANG]
         self.selectNum = 0
         self.state = TAN_START
         self.start()

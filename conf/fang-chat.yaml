@@ -261,7 +261,7 @@ gameloop:
 
 - type: goto
   if: True
-  conf: CONF_TAN_FANG_END
+  conf: CONF_FANG_END
   state: 0
 
 
