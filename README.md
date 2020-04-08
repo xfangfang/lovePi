@@ -38,7 +38,7 @@ sudo pip3 install pyyaml
 
 <!--默认分辨率为 240*240 适配waveshare 1.3 inch LCD HAT，如需更改分辨率请到 var.py 文件修改 HEIGHT 与 WIDTH 到新的值。-->
 
-1. 脚本开机自启
+3. 脚本开机自启
 
 `nano /etc/rc.local`
 
