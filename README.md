@@ -14,6 +14,7 @@ lovePi是一个使用pygame开发的恋爱养成游戏模版，支持使用者�
 ```
 git clone https://github.com/xfangfang/lovePi.git
 pip3 install pyyaml pygame
+cd lovePi
 python3 main.py PC
 ```
 
